@@ -61,6 +61,7 @@ const CommandLine: React.FC<CommandLineProps> = ({ currentDirectory, setCurrentD
             style={{
                 width: '100%',
                 maxWidth: '100%',
+                minHeight: '50px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'start',
