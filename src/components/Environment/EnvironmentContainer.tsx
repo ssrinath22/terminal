@@ -75,8 +75,8 @@ const EnvironmentContainer: React.FC<EnvironmentContainerProps> = ({ }) => {
             <div
                 style={{
                     height: '100%',
-                    width: '300px',
-                    maxWidth: '100%',
+                    width: '200px',
+                    minWidth: '200px',
                     display: 'flex',
                     flexDirection: 'column',
                     border: ui.border,
