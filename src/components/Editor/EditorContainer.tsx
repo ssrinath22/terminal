@@ -2,21 +2,6 @@ import { useSelector } from "react-redux"
 import { RootState } from "../../app/store"
 import Editor from "./Editor"
 
-const TabEditorSpacing = () => {
-    const {background} = useSelector((state: RootState) => state.theme)
-
-    return (
-        <div
-            style={{
-                height: '5px',
-                width: '100%',
-                backgroundColor: background.mainColor,
-            }}
-        />
-    )
-}
-
-
 type EditorContainerProps = {
     tabs: string[]
     focusedTab: string
@@ -24,6 +9,8 @@ type EditorContainerProps = {
 }
 
 const EditorContainer: React.FC<EditorContainerProps> = ({ tabs, focusedTab, layer }) => {
+    const { background, font, ui } = useSelector((state: RootState) => state.theme)
+
 
     return (
         <div
@@ -37,7 +24,12 @@ const EditorContainer: React.FC<EditorContainerProps> = ({ tabs, focusedTab, lay
                 flexDirection: 'column',
                 justifyContent: 'start',
                 alignItems: 'start',
-                overflow: 'scroll',
+                // scrollbarGutter:'stable',
+                overflowY: 'auto',
+                border: ui.border ,
+                borderRadius: ui.elementBorderRadius,
+                boxSizing: 'border-box',
+                padding: '5px 5px',
             }}
         >
             {/* <TabEditorSpacing /> */}

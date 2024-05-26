@@ -4,7 +4,8 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 export interface BackgroundState {
     mainColor: string
     accentColor: string
-    accentColor2?: string
+    accentColor2: string
+    hoverColor: string
 }
 
 export interface FontState {
@@ -17,29 +18,36 @@ export interface FontState {
     menuIconSize: number
     menuIconColor?: string
 }
-
+export interface UIState {
+    elementBorderRadius: string
+    uiSpacing:string
+    border:string
+}
 export interface ThemeState {
     background: BackgroundState
     font: FontState
+    ui: UIState
 }
 
 /** Default Values */
 const defaultBackgroundState: BackgroundState = {
-    mainColor: '#fffdfd',
-    accentColor: '#91C8E4',
-    accentColor2: '#3887BE',
+    mainColor: '#FFFFFF',
+    accentColor: '#000000',
+    accentColor2: '#DD5746',
+    hoverColor: '#E0E0E0',
 }
 
 const darkModeBackground: BackgroundState = {
     mainColor: '#31363F',
     accentColor: '#91C8E4',
     accentColor2: '#3887BE',
+    hoverColor: '#E0E0E0',
 }
 
 const defaltFontState: FontState = {
     contentColor: '#3C3633',
     contentFont: 'Inconsolata, monospace',
-    contentFontSize: 16,
+    contentFontSize: 14,
     contentFontWeight: 400,
     headerFontWeight: 500,
     responseFontWeight: 800,
@@ -56,9 +64,16 @@ const darkModeFont: FontState = {
     menuIconSize: 2,
 }
 
+const defaultUIState = {
+    elementBorderRadius: '5px',
+    uiSpacing: '5px',
+    border: '1px solid #E0E0E0',
+}
+
 const initialState: ThemeState = {
     background: defaultBackgroundState,
     font: defaltFontState,
+    ui: defaultUIState,
 }
 
 

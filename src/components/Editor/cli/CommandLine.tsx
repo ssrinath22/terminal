@@ -3,7 +3,7 @@ import { RootState } from "../../../app/store"
 import { useEffect, useState } from "react"
 import CommandLineHeader from "./sections/CommandLineHeader"
 import CommandLineInput from "./sections/CommandLineInput"
-import { executeCommand } from "../../../execute/ExecuteCommand"
+import { executeCommand } from "../../../api/ExecuteCommand"
 import { ContentCopy, CopyAllOutlined, Shortcut } from "@mui/icons-material"
 import CommandLineAdornments from "./sections/CommandLineAdornments"
 import Response from "./CommandLineResponse"
@@ -67,6 +67,7 @@ const CommandLine: React.FC<CommandLineProps> = ({ currentDirectory, setCurrentD
                 justifyContent: 'start',
                 alignItems: 'start',
                 overflowY: 'hidden',
+                // padding: '5px 5px',
             }}
         >
 
@@ -76,8 +77,8 @@ const CommandLine: React.FC<CommandLineProps> = ({ currentDirectory, setCurrentD
                     width: '100%',
                     display: 'flex',
                     flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    justifyContent: 'start',
+                    alignItems: 'start',
                     gap: spacing,
                 }}
             >

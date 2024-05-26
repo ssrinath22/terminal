@@ -1,8 +1,73 @@
+// import { useEffect, useState } from "react"
+// import Tab from "./components/Tab"
+// import AddTab from "./components/AddTab"
+// import { useSelector } from "react-redux"
+// import { RootState } from "../../app/store"
+// import { Add, Close, PlusOne } from "@mui/icons-material"
+
+// type TabsContainerProps = {
+//     focusedTab: string
+//     setFocusedTab: (id: string) => void
+//     openTabs: string[]
+//     setOpenTabs: (tabs: string[]) => void
+//     layer: number
+//     mandatory?: boolean
+// }
+
+// const TabsContainer: React.FC<TabsContainerProps> = ({ focusedTab, setFocusedTab, openTabs, setOpenTabs, mandatory = false, layer }) => {
+//     const { background, font, ui } = useSelector((state: RootState) => state.theme)
+
+//     const closeTab = (tabId: string) => {
+//         const newTabs = openTabs.filter(tab => tab !== tabId)
+//         setOpenTabs(newTabs)
+//     }
+//     const addTab = (tabId: string) => {
+//         setOpenTabs([...openTabs, tabId])
+//         setFocusedTab(tabId)
+//         setFocusedTab(`tab-${tabId}`)
+//     }
+//     return (
+//         <div
+//             style={{
+//                 display: 'flex',
+//                 flexDirection: 'row',
+//                 alignItems: 'center',
+//                 gap: ui.uiSpacing,
+//                 height: '45px',
+//                 width: '100%',
+//                 overflow:'scroll',
+//                 padding: '5px 5px',
+//                 boxSizing: 'border-box',
+//                 borderRadius: ui.elementBorderRadius,
+//             }}
+//         >
+//             {openTabs.map((v, i) => (
+//                 <Tab
+//                     key={`tab-${i}`}
+//                     name={v}
+//                     focusedTab={focusedTab}
+//                     setFocusedTab={setFocusedTab}
+//                     closeTab={closeTab}
+//                     mandatory={mandatory}
+//                 />
+//             ))}
+
+//             {!mandatory &&
+//                 <AddTab
+//                     addTab={addTab}
+//                 />
+//             }
+//         </div>
+//     )
+// }
+
+// export default TabsContainer
+import { useEffect, useState } from "react"
+import Tab from "./components/Tab"
+import AddTab from "./components/AddTab"
 import { useSelector } from "react-redux"
 import { RootState } from "../../app/store"
-import SingleTab from "./components/SingleTab"
-import { Add } from "@mui/icons-material"
-import { useState } from "react"
+import { Add, Close, PlusOne } from "@mui/icons-material"
 
 type TabsContainerProps = {
     focusedTab: string
@@ -10,106 +75,71 @@ type TabsContainerProps = {
     openTabs: string[]
     setOpenTabs: (tabs: string[]) => void
     layer: number
+    mandatory?: boolean
 }
 
-const TabsContainer: React.FC<TabsContainerProps> = ({ focusedTab, setFocusedTab, openTabs, setOpenTabs, layer }) => {
-    const { background, font } = useSelector((state: RootState) => state.theme)
-    const [addTabActivated, setAddTabActivated] = useState<boolean>(false)
+const TabsContainer: React.FC<TabsContainerProps> = ({ focusedTab, setFocusedTab, openTabs, setOpenTabs, mandatory = false, layer }) => {
+    const { background, font, ui } = useSelector((state: RootState) => state.theme)
 
-    const topPad = 10
-    const sidePad = 10
-
-    const minHeight = font.contentFontSize  + 2* topPad
-    const minWidth = font.contentFontSize  + 2* sidePad
-
-    
-
-    const handleNewTabOpened = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            setOpenTabs([...openTabs, e.currentTarget.value])
-            setFocusedTab(e.currentTarget.value)
-            setAddTabActivated(false)
-            setFocusedTab(`tab-${e.currentTarget.value}`)
-        }
-    }
-
-    const handleTabClose = (tabId: string) => {
+    const closeTab = (tabId: string) => {
         const newTabs = openTabs.filter(tab => tab !== tabId)
         setOpenTabs(newTabs)
     }
-
+    const addTab = (tabId: string) => {
+        setOpenTabs([...openTabs, tabId])
+        setFocusedTab(tabId)
+        setFocusedTab(`tab-${tabId}`)
+    }
     return (
         <div
             style={{
-                width: '100%',
                 display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'start',
-                overflow: 'hidden',
+                alignItems: 'center',
+                height: '45px',
+                width: '100%',
+                maxWidth: '100%',
+                position: 'relative', // Ensures AddTab is positioned relative to this container
+                boxSizing: 'border-box',
+                borderRadius: ui.elementBorderRadius,
+                backgroundColor: background.mainColor,
             }}
         >
-            {/** Currently Open Tabs */}
-            {openTabs.map((name, index) => (
-                <SingleTab
-                    key={`tab-${name}`}
-                    name={name}
-                    focusedTab={focusedTab}
-                    setFocusedTab={setFocusedTab}
-                    handleTabClose={handleTabClose}
-                    layer={layer}
-                />
-            ))}
-
-            {/** Open a new tab */}
             <div
-                onClick={() => {
-                    // const newTab = prompt('Enter a new tab name')
-                    setAddTabActivated(true)
-                }}
                 style={{
-                    padding: `${sidePad} ${topPad}`,
-                    cursor: 'pointer',
-                    zIndex: 0,
                     display: 'flex',
-                    justifyContent: 'center',
+                    flexDirection: 'row',
                     alignItems: 'center',
+                    gap: ui.uiSpacing,
                     height: '100%',
-                    minHeight: minHeight,
-                    minWidth: minWidth,
+                    overflowX: 'auto',
+                    scrollbarWidth:'none',
+                    boxSizing: 'border-box',
+                    flexGrow: 1,
+                    padding: '5px 5px',
                 }}
             >
-                {addTabActivated ?
-                    <input
-                        autoFocus
-                        placeholder="New Tab"
-                        type='text'
-                        style={{
-                            display: 'flex',
-                            width: 'auto',
-                            maxWidth: '80px',
-                            fontFamily: font.contentFont,
-                            fontSize: font.contentFontSize,
-                            fontWeight: font.contentFontWeight,
-                            outline: 'none',
-                            border:'none',
-                            padding: '0px 10px',
-                            backgroundColor: 'transparent',
-                        }}
-                        onBlur={() => setAddTabActivated(false)}
-                        onKeyDown={handleNewTabOpened}
+                {openTabs.map((v, i) => (
+                    <Tab
+                        key={`tab-${i}`}
+                        name={v}
+                        focusedTab={focusedTab}
+                        setFocusedTab={setFocusedTab}
+                        closeTab={closeTab}
+                        mandatory={mandatory}
                     />
-                    :
-                    <Add
-                        style={{
-                            color: font.contentColor,
-                            cursor: 'pointer',
-                            width: font.contentFontSize,
-                            height: font.contentFontSize,
-                        }}
-                    />
-                }
-
+                ))}
             </div>
+            
+            {!mandatory && (
+                <div
+                    style={{
+                        // position: 'absolute',
+                        // right: '10px', // Adjust as needed to match container padding
+                    }}
+                >
+                    <AddTab addTab={addTab} openTabs={openTabs}/>
+                </div>
+            )}
         </div>
     )
 }

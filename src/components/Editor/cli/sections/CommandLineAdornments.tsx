@@ -18,7 +18,7 @@ const CommandLineAdornments: React.FC<CommandLineAdornmentsProps> = ({ currentCo
 
     const opacity = (hovered: boolean) => hovered ? .6 : 1
 
-    const innerPadding = '0px 5px'
+    const innerPadding = '0px 20px'
 
     /** copy a command */
     const copyCommand = async () => {
@@ -37,7 +37,7 @@ const CommandLineAdornments: React.FC<CommandLineAdornmentsProps> = ({ currentCo
         <div
             style={{
                 position: 'absolute',
-                right: '0',
+                right: 0,
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'center',

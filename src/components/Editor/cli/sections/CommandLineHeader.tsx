@@ -40,19 +40,19 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
 
     /** user id style */
     const userIdBackgroundOpacity = hoverOpacity
-    const userIdBackgroundColor = userIdHovered ? `${background.accentColor}${userIdBackgroundOpacity}` : 'transparent'
+    const userIdBackgroundColor = userIdHovered ? background.hoverColor : 'transparent'
     const userIdPadding = generalPadding
     const userIdBorderRadius = generalBorderRadius
 
     /** dir style */
     const dirBackgroundOpacity = hoverOpacity
-    const dirBackgroundColor = dirHovered ? `${background.accentColor}${dirBackgroundOpacity}` : 'transparent'
+    const dirBackgroundColor = dirHovered ? background.hoverColor : 'transparent'
     const dirPadding = generalPadding
     const dirBorderRadius = generalBorderRadius
 
     /** git style */
     const gitBackgroundOpacity = hoverOpacity
-    const gitBackgroundColor = gitHovered ? `${background.accentColor}${dirBackgroundOpacity}` : 'transparent'
+    const gitBackgroundColor = gitHovered ? background.hoverColor : 'transparent'
     const gitPadding = generalPadding
     const gitBorderRadius = generalBorderRadius
 
@@ -134,7 +134,8 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
                 onMouseEnter={() => setGitHovered(true)}
                 onMouseLeave={() => setGitHovered(false)}
                 style={{
-                    fontWeight: font.headerFontWeight,
+                    fontWeight: font.headerFontWeight*2,
+                    color: background.accentColor2,
                     padding: gitPadding,
                     cursor: 'pointer',
                     borderRadius: gitBorderRadius,

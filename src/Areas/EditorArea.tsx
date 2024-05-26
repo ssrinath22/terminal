@@ -12,11 +12,12 @@ type EditorArea = {
 
 const EditorArea: React.FC<EditorArea> = ({ name, activeSection }) => {
     const [focusedTab, setFocusedTab] = useState<string>('')
-    const [openTabs, setOpenTabs] = useState<string[]>([])
+    const [openTabs, setOpenTabs] = useState<string[]>(['hello world', 'yep','1','2','3','4','6','7','9','10','98','123','2134','1214','325','252456'])
 
-    const { background, font } = useSelector((state: RootState) => state.theme)
+    const { background, font, ui } = useSelector((state: RootState) => state.theme)
 
     const currId = `section-${name}`
+    const altId = `section-${"environment"}`
 
     /* default focused tab to first tab if there is more than one tab*/
     useEffect(() => {
@@ -25,40 +26,28 @@ const EditorArea: React.FC<EditorArea> = ({ name, activeSection }) => {
         }
     }, [])
 
+    /* default focused tab to last tab if when current tab is closed*/
+    useEffect(() => {
+        if (openTabs.length > 0) {
+            setFocusedTab(`tab-${openTabs[openTabs.length - 1]}`)
+        }
+    }, [openTabs])
+
 
     return (
         <div
             style={{
                 position: 'relative',
-                height: '100%',
+                display: (activeSection === currId || activeSection === altId) ? 'flex' : 'none',
+                maxHeight: '100%',
                 width: '100%',
-                display: (activeSection === currId) ? 'flex' : 'none',
+                maxWidth: '100%',
+                overflow:'hidden',
                 flexDirection: 'column',
+                padding: '5px 6px',
+                gap: ui.uiSpacing,
             }}
         >
-            {/** Background */}
-            { (openTabs.length === 0) && 
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        zIndex: 0,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        fontFamily: font.contentFont,
-                        fontSize: 40,
-                        backgroundColor: `${background.accentColor}40`,
-                        color: background.accentColor,
-                    }}
-                >
-                    Open a new tab to start coding!
-                </div>
-            }
-
             <TabsContainer
                 layer={1}
                 focusedTab={focusedTab}
@@ -66,6 +55,7 @@ const EditorArea: React.FC<EditorArea> = ({ name, activeSection }) => {
                 openTabs={openTabs}
                 setOpenTabs={setOpenTabs}
             />
+
             <EditorContainer
                 layer={1}
                 tabs={openTabs}

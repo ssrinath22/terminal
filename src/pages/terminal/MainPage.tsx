@@ -3,19 +3,20 @@ import EditorArea from "../../Areas/EditorArea"
 import MenuArea from "../../Areas/MenuArea"
 import { RootState } from "../../app/store"
 import { useEffect, useState } from "react"
+import EnvironmentArea from "../../Areas/EnvironmentArea"
 
 type MainPageProps = {
 
 }
 
 const MainPage: React.FC<MainPageProps> = () => {
-    const { background } = useSelector((state: RootState) => state.theme)
+    const { background, ui } = useSelector((state: RootState) => state.theme)
     const [activeSection, setActiveSection] = useState('')
 
     /** set a default active section if not alr set */
     useEffect(() => {
         if (activeSection === '') {
-            setActiveSection('section-Terminal')
+            setActiveSection('section-terminal')
         }
     }, [])
 
@@ -26,8 +27,11 @@ const MainPage: React.FC<MainPageProps> = () => {
                 display: 'flex',
                 flexDirection: 'row',
                 height: '100vh',
+                maxHeight: '100vh',
                 width: '100vw',
-                backgroundColor: background.mainColor
+                maxWidth: '100vw',
+                backgroundColor: background.mainColor,
+                gap: ui.uiSpacing,
             }}
         >
             <MenuArea
@@ -35,9 +39,14 @@ const MainPage: React.FC<MainPageProps> = () => {
                 setActiveSection={setActiveSection}
             />
             <EditorArea
-                name='Terminal'
+                name='terminal'
                 activeSection={activeSection}
             />
+            <EnvironmentArea
+                name="environment"
+                activeSection={activeSection}
+            />
+
 
         </div>
     )

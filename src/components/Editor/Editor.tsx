@@ -55,7 +55,6 @@ const Editor: React.FC<EditorProps> = ({ tab, isActive, layer }) => {
                 zIndex: layer,
                 height: '100%', //TODO: change to 100%
                 width: '100%',
-                maxHeight: '100%',
                 maxWidth: '100%',
                 display: isActive ? 'flex' : 'none',
                 justifyContent: 'start',

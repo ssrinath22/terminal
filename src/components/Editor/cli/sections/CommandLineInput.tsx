@@ -28,7 +28,7 @@ const CommandLineInput: React.FC<CommandLineInputProps> = ({ currentCommand, set
     return (
         <div
             style={{
-                width: '100%',
+                width: '69%',
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'start',

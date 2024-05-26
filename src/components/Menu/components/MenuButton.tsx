@@ -1,66 +1,57 @@
-import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../../../app/store"
+import { useState } from "react"
 
 type MenuButtonProps = {
-    name: string
-    activeSession: string
-    setActiveSession: (arg0: string) => void
-    symbol: React.ReactNode
-    layer: number
+    id: string
+    activeSection: string
+    setActiveSection: (section: string) => void
+    targetSection: string
+    children: React.ReactNode
 }
 
-const MenuButton: React.FC<MenuButtonProps> = ({ name, activeSession, setActiveSession, symbol, layer }) => {
-
-    const { background, font } = useSelector((state: RootState) => state.theme)
-
+const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSection, targetSection, children }) => {
+    const {background, font, ui} = useSelector((state: RootState) => state.theme)
     const [hovered, setHovered] = useState<boolean>(false)
-    const targetId = `section-${name}`
-    const active = (activeSession === targetId)
+    const isActive = activeSection === targetSection
+    const backgroundColor = hovered || isActive ? background.hoverColor :  'transparent'
+    const handleMouseEnter = () => {
+        !isActive && setHovered(true)
+    }
 
-    const contentOpacity = !active ? hovered ? 1 : .6 : 1
+    const handleMouseLeave = () => {
+        hovered && setHovered(false)
+    }
 
-    const indicatorHeight = !active ? 0 : 100
-    const indicatorWidth = !active ? 0 : 3
-
-    console.log(activeSession, name)
+    const handleClick = () => {
+        setActiveSection(targetSection)
+    }
 
     return (
         <div
+            id={id}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
             style={{
-                position: 'relative',
-                zIndex: layer,
+                display: 'flex',
+                flexDirection:'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '60px',
                 width: '100%',
-                padding: '20px 0px',
+                borderRadius: ui.elementBorderRadius,
+                backgroundColor,
+                fontFamily: font.contentFont,
+                fontWeight: font.contentFontWeight,
+                fontSize: font.contentFontSize,
+                userSelect: 'none',
+                gap: ui.uiSpacing,
             }}
         >
-            <div
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-                onClick={() => setActiveSession(targetId)}
-                style={{
-                    cursor: 'pointer',
-                    opacity: contentOpacity,
-                    display: 'auto',
-                    color: background.mainColor,
-                }}
-            >
-                {symbol}
-
-            </div>
-            {/** active indicator */}
-            <div
-                style={{
-                    position: 'absolute',
-                    width: indicatorWidth,
-                    height: '100%',
-                    backgroundColor: background.mainColor,
-                    top:0,
-                    left: 0,
-                }}
-            />
+            {children}
+            {id}
         </div>
-
     )
 }
 
