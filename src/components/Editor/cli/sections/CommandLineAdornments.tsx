@@ -43,8 +43,8 @@ const CommandLineAdornments: React.FC<CommandLineAdornmentsProps> = ({ currentCo
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: 10,
-                backgroundColor: background.mainColor,
                 height: '100%',
+                backgroundColor: background.editorColor,
                 padding: innerPadding,
             }}
         >
@@ -55,8 +55,8 @@ const CommandLineAdornments: React.FC<CommandLineAdornmentsProps> = ({ currentCo
                 style={{
                     color: font.contentColor,
                     cursor: 'pointer',
-                    width: font.contentFontSize,
-                    height: font.contentFontSize,
+                    width: font.editorFontSize,
+                    height: font.editorFontSize,
                     opacity: opacity(copyHovered),
                 }}
             />
@@ -69,8 +69,8 @@ const CommandLineAdornments: React.FC<CommandLineAdornmentsProps> = ({ currentCo
                     style={{
                         color: 'green',
                         cursor: 'pointer',
-                        width: font.contentFontSize,
-                        height: font.contentFontSize,
+                        width: font.editorFontSize,
+                        height: font.editorFontSize,
                         opacity: opacity(runHovered),
                     }}
                 />
@@ -82,8 +82,8 @@ const CommandLineAdornments: React.FC<CommandLineAdornmentsProps> = ({ currentCo
                     style={{
                         color: font.contentColor,
                         cursor: 'pointer',
-                        width: font.contentFontSize,
-                        height: font.contentFontSize,
+                        width: font.editorFontSize,
+                        height: font.editorFontSize,
                         opacity: opacity(runHovered),
                     }}
                 />

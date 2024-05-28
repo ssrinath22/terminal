@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../../../../app/store"
+import { executeCommand } from "../../../../api/ExecuteCommand"
 
 type CommandLineHeaderProps = {
     currentDirectory: string
@@ -21,6 +22,7 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
     /** dir states */
     const [dirMode, setdirMode] = useState<'show' | 'hide'>('show')
     const [dirHovered, setDirHovered] = useState<boolean>(false)
+    const [dir, setDir] = useState('./')
 
     /** git states */
     const [gitHovered, setGitHovered] = useState<boolean>(false)
@@ -56,15 +58,24 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
     const gitPadding = generalPadding
     const gitBorderRadius = generalBorderRadius
 
+    useEffect(() =>{
+        const updateDir = async () => {
+            const newDir = await executeCommand('pwd')
+            setDir(newDir)
+        }
+
+        updateDir()
+    },[])
+
     return (
         <div
             style={{
                 height: '100%',
                 backgroundColor: headerBackgroundColor,
                 color: font.contentColor,
-                fontFamily: font.contentFont,
+                fontFamily: font.editorFont,
                 fontWeight: font.contentFontWeight,
-                fontSize: font.contentFontSize,
+                fontSize: font.editorFontSize,
                 borderRadius: headerdBorderRadius,
                 display: 'flex',
                 flexDirection: 'row',
@@ -116,7 +127,8 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
                 }}
             >
                 {/** dir */}
-                <span>{currentDirectory}</span>
+                {/* <span>{currentDirectory}</span> */}
+                <span>{dir}</span>
             </div>
 
             {/** delimiter */}

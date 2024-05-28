@@ -1,32 +1,50 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+
 /** Types */
 export interface BackgroundState {
     mainColor: string
     accentColor: string
     accentColor2: string
+    editorColor: string
+    iconColor: string
     hoverColor: string
 }
 
+export interface IconState {
+    iconColorMain: string
+    iconColorSecondary: string
+    iconSizeSmall: string | number
+    iconSizeMed: string | number
+    iconSizeLarge: string | number
+    iconDescSizeSmall: string | number
+    iconDescSizeMed: string | number
+    iconDescSizeLarge: string | number
+    iconDescColor: string
+}
 export interface FontState {
+    editorFont: string
+    editorFontSize: number
     contentColor: string
     contentFont: string
     contentFontSize: number
     contentFontWeight: number
     headerFontWeight: number
     responseFontWeight: number
-    menuIconSize: number
-    menuIconColor?: string
 }
-export interface UIState {
+export interface ElementState {
     elementBorderRadius: string
     uiSpacing:string
     border:string
+    boxShadow: string
+    tabSelectColor:string
 }
 export interface ThemeState {
     background: BackgroundState
     font: FontState
-    ui: UIState
+    ui: ElementState
+    icon: IconState
+    mode: 'default' | 'dark'
 }
 
 /** Default Values */
@@ -34,48 +52,93 @@ const defaultBackgroundState: BackgroundState = {
     mainColor: '#FFFFFF',
     accentColor: '#000000',
     accentColor2: '#DD5746',
+    iconColor: '#B4CCB9',
     hoverColor: '#E0E0E0',
+    editorColor: '#F0F0F0',
 }
-
-const darkModeBackground: BackgroundState = {
-    mainColor: '#31363F',
-    accentColor: '#91C8E4',
-    accentColor2: '#3887BE',
-    hoverColor: '#E0E0E0',
-}
-
-const defaltFontState: FontState = {
+const defaultFontState: FontState = {
+    editorFont: 'Inconsolata, monospace',
+    editorFontSize: 13,
     contentColor: '#3C3633',
-    contentFont: 'Inconsolata, monospace',
-    contentFontSize: 14,
-    contentFontWeight: 400,
+    contentFont: 'Roboto, sans-serif',
+    contentFontSize: 12,
+    contentFontWeight: 300,
     headerFontWeight: 500,
     responseFontWeight: 800,
-    menuIconSize: 2,
 }
-
-const darkModeFont: FontState = {
-    contentColor: '#EEEEEE',
-    contentFont: 'Inconsolata, monospace',
-    contentFontSize: 16,
-    contentFontWeight: 400,
-    headerFontWeight: 500,
-    responseFontWeight: 800,
-    menuIconSize: 2,
-}
-
-const defaultUIState = {
+const defaultElementState = {
     elementBorderRadius: '5px',
     uiSpacing: '5px',
-    border: '1px solid #E0E0E0',
+    border: `1px solid ${defaultBackgroundState.hoverColor}`,
+    boxShadow: `${defaultBackgroundState.accentColor}44 0px 0px 3px`,
+    tabSelectColor: defaultBackgroundState.mainColor,
+}
+
+const defaultIconState = {
+    iconColorMain: '#B4CCB9',
+    iconColorSecondary: '#45AAB8',
+    iconSizeSmall: '16px',
+    iconSizeMed: '22px',
+    iconSizeLarge: '32px',
+    iconDescSizeSmall: '10px',
+    iconDescSizeMed: '12px',
+    iconDescSizeLarge: '14px',
+    iconDescColor: defaultFontState.contentColor,
 }
 
 const initialState: ThemeState = {
     background: defaultBackgroundState,
-    font: defaltFontState,
-    ui: defaultUIState,
+    font: defaultFontState,
+    ui: defaultElementState,
+    icon: defaultIconState,
+    mode: 'default',
 }
 
+const darkModeBackground: BackgroundState = {
+    mainColor: '#2c2c2c',
+    accentColor: '#000000',
+    accentColor2: '#be38a1',
+    iconColor: '#B4CCB9',
+    hoverColor: '#535252',
+    editorColor: '#383737',
+}
+const darkModeFont: FontState = {
+    editorFont: 'Inconsolata, monospace',
+    editorFontSize: 13,
+    contentColor: '#bcb6b6',
+    contentFont: 'Roboto, sans-serif',
+    contentFontSize: 12,
+    contentFontWeight: 400,
+    headerFontWeight: 500,
+    responseFontWeight: 800,
+}
+const darkUIState = {
+    elementBorderRadius: '5px',
+    uiSpacing: '5px',
+    border: `1px solid ${darkModeBackground.hoverColor}`,
+    boxShadow: `${darkModeBackground.accentColor}FF 0px 0px 1px`,
+    tabSelectColor: darkModeBackground.hoverColor,
+}
+
+const darkIconState = {
+    iconColorMain: '#B4CCB9',
+    iconColorSecondary: '#45AAB8',
+    iconSizeSmall: '16px',
+    iconSizeMed: '22px',
+    iconSizeLarge: '32px',
+    iconDescSizeSmall: '10px',
+    iconDescSizeMed: '12px',
+    iconDescSizeLarge: '14px',
+    iconDescColor: darkModeFont.contentColor,
+}
+
+const darkModeState: ThemeState = {
+    background: darkModeBackground,
+    font: darkModeFont,
+    ui: darkUIState,
+    icon: darkIconState,
+    mode: 'dark',
+}
 
 /** Theme Slice */
 export const themeSlice = createSlice({
@@ -85,10 +148,17 @@ export const themeSlice = createSlice({
         setTheme: (state, action: PayloadAction<ThemeState>) => {
             state = action.payload
         },
+        toggleTheme: (state) => {
+            if (state.mode === 'default') {
+                return darkModeState
+            } else {
+                return initialState
+            }
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setTheme } = themeSlice.actions
+export const { setTheme, toggleTheme } = themeSlice.actions
 
 export default themeSlice.reducer

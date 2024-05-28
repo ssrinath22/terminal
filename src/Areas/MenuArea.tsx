@@ -11,7 +11,7 @@ type MenuArea = {
 }
 
 const MenuArea: React.FC<MenuArea> = ({activeSection, setActiveSection}) => {
-    const { background } = useSelector((state: RootState) => state.theme)
+    const { background, ui } = useSelector((state: RootState) => state.theme)
 
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const MenuArea: React.FC<MenuArea> = ({activeSection, setActiveSection}) => {
                 position:'relative',
                 zIndex: 2,
                 backgroundColor: `${background.mainColor}`,
-                minWidth: '85px',
+                minWidth: '75px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',

@@ -40,19 +40,28 @@ const CommandLine: React.FC<CommandLineProps> = ({ currentDirectory, setCurrentD
 
 
     /** handle executing a command */
-    const handleExecuteCommand = () => {
+    const handleExecuteCommand = async () => {
         console.log('executing command: ')
-        const res = executeCommand(currentCommand)
-        setCurrentResponse(res) /** signal execution finished */
-        console.log(currentCommand, res)
+        try {
+            const res = await executeCommand(currentCommand)
+            setCurrentResponse(res) /** signal execution finished */
+            console.log(currentCommand, res)
+        } catch(error) {
+            console.error('Error executing command:', error)
+        }
+       
     }
     /** detect execution signal */
     useEffect(() => {
-        if (readyToExecute) {
-            handleExecuteCommand()
+        const execute = async () => {
+          if (readyToExecute) {
+            await handleExecuteCommand()
             setReadyToExecute(false)
+          }
         }
-    }, [readyToExecute])
+      
+        execute()
+      }, [readyToExecute])
 
     /** */
 
@@ -66,7 +75,8 @@ const CommandLine: React.FC<CommandLineProps> = ({ currentDirectory, setCurrentD
                 flexDirection: 'column',
                 justifyContent: 'start',
                 alignItems: 'start',
-                overflowY: 'hidden',
+                // overflow: 'hidden',
+                // boxSizing:'border-box',
                 // padding: '5px 5px',
             }}
         >
@@ -82,15 +92,6 @@ const CommandLine: React.FC<CommandLineProps> = ({ currentDirectory, setCurrentD
                     gap: spacing,
                 }}
             >
-                {/** Spacing */}
-                {/* <div
-                    style={{
-                        height: '100%',
-                        width: '5px',
-                        backgroundColor: background.mainColor,
-                    }}
-                /> */}
-                
                 {/** CLI HEADER */}
                 <CommandLineHeader
                     currentDirectory={currentDirectory}

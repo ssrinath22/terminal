@@ -8,10 +8,13 @@ type MenuButtonProps = {
     setActiveSection: (section: string) => void
     targetSection: string
     children: React.ReactNode
+    desc?:boolean
+    version?:number
+    switching?:boolean
 }
 
-const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSection, targetSection, children }) => {
-    const {background, font, ui} = useSelector((state: RootState) => state.theme)
+const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSection, targetSection, children, desc=true, version=1, switching=true}) => {
+    const {background, font, ui, icon} = useSelector((state: RootState) => state.theme)
     const [hovered, setHovered] = useState<boolean>(false)
     const isActive = activeSection === targetSection
     const backgroundColor = hovered || isActive ? background.hoverColor :  'transparent'
@@ -24,7 +27,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
     }
 
     const handleClick = () => {
-        setActiveSection(targetSection)
+        switching && setActiveSection(targetSection)
     }
 
     return (
@@ -38,19 +41,23 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
                 flexDirection:'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+                minHeight: '60px',
                 height: '60px',
                 width: '100%',
                 borderRadius: ui.elementBorderRadius,
                 backgroundColor,
                 fontFamily: font.contentFont,
                 fontWeight: font.contentFontWeight,
-                fontSize: font.contentFontSize,
+                fontSize: icon.iconDescSizeMed,
+                color: icon.iconDescColor,
                 userSelect: 'none',
+                WebkitUserSelect:'none',
+                cursor:'default',
                 gap: ui.uiSpacing,
             }}
         >
             {children}
-            {id}
+            {desc && id}
         </div>
     )
 }
