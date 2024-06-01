@@ -9,8 +9,8 @@ function Icon() {
             xmlns="http://www.w3.org/2000/svg"
             fill="#000"
             version="1"
-            width={icon.iconSizeMed}
-            height={icon.iconSizeMed}
+            width={icon.iconSize}
+            height={icon.iconSize}
             viewBox="0 0 64 64"
             xmlSpace="preserve"
         >

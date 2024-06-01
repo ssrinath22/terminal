@@ -8,8 +8,8 @@ function Icon() {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={icon.iconSizeMed}
-            height={icon.iconSizeMed}
+            width={icon.iconSize}
+            height={icon.iconSize}
             version="1"
             viewBox="0 0 64 64"
             xmlSpace="preserve"

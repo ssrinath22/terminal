@@ -1,8 +1,5 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Editor from './components/Editor/Editor';
-import MainPage from './pages/terminal/MainPage';
+import MainPage from './pages/markdown/MainPage';
 
 function App() {
   return (

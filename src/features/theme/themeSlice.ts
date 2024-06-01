@@ -10,18 +10,21 @@ export interface BackgroundState {
     iconColor: string
     hoverColor: string
 }
-
 export interface IconState {
     iconColorMain: string
     iconColorSecondary: string
     iconColorTertiary: string
+    iconSize:number
+    iconDescSize:number
+    iconDescColor: string
+}
+export interface SizeOptions {
     iconSizeSmall: number
     iconSizeMed: number
-    iconSizeLarge:  number
-    iconDescSizeSmall: number
-    iconDescSizeMed: number
-    iconDescSizeLarge: number
-    iconDescColor: string
+    iconSizeLarge: number
+    fontSizeSmall: number
+    fontSizeMed: number
+    fontSizeLarge: number
 }
 export interface FontState {
     editorFont: string
@@ -47,24 +50,31 @@ export interface ThemeState {
     icon: IconState
     mode: 'default' | 'dark'
 }
-
 /** Default Values */
+const sizeOptions: SizeOptions = {
+    iconSizeSmall: 16,
+    iconSizeMed: 22,
+    iconSizeLarge: 32,
+    fontSizeSmall: 12,
+    fontSizeMed: 14,
+    fontSizeLarge: 16,
+}
 const defaultBackgroundState: BackgroundState = {
     mainColor: '#FFFFFF',
     accentColor: '#000000',
     accentColor2: '#DD5746',
     iconColor: '#B4CCB9',
     hoverColor: '#E0E0E0',
-    editorColor: '#F0F0F0',
+    editorColor: '#f3f3f3',
 }
 const defaultFontState: FontState = {
-    editorFont: 'Inconsolata, monospace',
-    editorFontSize: 13,
+    editorFont:  '"Fira code", "Fira Mono", monospace',
+    editorFontSize: sizeOptions.fontSizeMed,
     contentColor: '#3C3633',
     contentFont: 'Roboto, sans-serif',
-    contentFontSize: 12,
-    contentFontWeight: 300,
-    headerFontWeight: 500,
+    contentFontSize: sizeOptions.fontSizeMed,
+    contentFontWeight: 400,
+    headerFontWeight: 700,
     responseFontWeight: 800,
 }
 const defaultElementState = {
@@ -74,20 +84,14 @@ const defaultElementState = {
     boxShadow: `${defaultBackgroundState.accentColor}44 0px 0px 3px`,
     tabSelectColor: defaultBackgroundState.mainColor,
 }
-
 const defaultIconState = {
     iconColorMain: '#B4CCB9',
     iconColorSecondary: '#45AAB8',
     iconColorTertiary: '#F9EBB2',
-    iconSizeSmall: 16,
-    iconSizeMed: 22,
-    iconSizeLarge: 32,
-    iconDescSizeSmall: 12,
-    iconDescSizeMed: 14,
-    iconDescSizeLarge: 16,
+    iconSize: sizeOptions.iconSizeMed,
+    iconDescSize: sizeOptions.fontSizeMed,
     iconDescColor: defaultFontState.contentColor,
 }
-
 const initialState: ThemeState = {
     background: defaultBackgroundState,
     font: defaultFontState,
@@ -105,12 +109,12 @@ const darkModeBackground: BackgroundState = {
     editorColor: '#282828',
 }
 const darkModeFont: FontState = {
-    editorFont: 'Inconsolata, monospace',
-    editorFontSize: 13,
+    editorFont:  '"Fira code", "Fira Mono", monospace',
+    editorFontSize: sizeOptions.fontSizeMed,
     contentColor: '#c2bdbd',
     contentFont: 'Roboto, sans-serif',
-    contentFontSize: 12,
-    contentFontWeight: 500,
+    contentFontSize: sizeOptions.fontSizeMed,
+    contentFontWeight: 400,
     headerFontWeight: 700,
     responseFontWeight: 800,
 }
@@ -126,12 +130,8 @@ const darkIconState = {
     iconColorMain: '#b8b4cc',
     iconColorSecondary: '#F76D57',
     iconColorTertiary: '#F9EBB2',
-    iconSizeSmall: 16,
-    iconSizeMed: 22,
-    iconSizeLarge: 32,
-    iconDescSizeSmall: 12,
-    iconDescSizeMed: 14,
-    iconDescSizeLarge: 16,
+    iconSize: sizeOptions.iconSizeMed,
+    iconDescSize: sizeOptions.fontSizeMed,
     iconDescColor: darkModeFont.contentColor,
 }
 
@@ -146,7 +146,7 @@ const darkModeState: ThemeState = {
 /** Theme Slice */
 export const themeSlice = createSlice({
     name: 'theme',
-    initialState:darkModeState,
+    initialState,
     reducers: {
         setTheme: (state, action: PayloadAction<ThemeState>) => {
             state = action.payload

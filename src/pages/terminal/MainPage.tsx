@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux"
-import EditorArea from "../../areas/EditorArea"
-import MenuArea from "../../areas/MenuArea"
+import EditorArea from "../../areas/terminal/EditorArea"
+import MenuArea from "../../areas/terminal/MenuArea"
 import { RootState } from "../../app/store"
 import { useEffect, useState } from "react"
-import EnvironmentArea from "../../areas/EnvironmentArea"
-import HeaderArea from "../../areas/HeaderArea"
-import SettingsArea from "../../areas/SettingsArea"
+import EnvironmentArea from "../../areas/terminal/EnvironmentArea"
+import HeaderArea from "../../areas/terminal/HeaderArea"
+import SettingsArea from "../../areas/terminal/SettingsArea"
 import { DragIndicator } from "@mui/icons-material"
-import ResizerDivider from "../../components/Divider/ResizeDivider"
+import ResizerDivider from "../../components/terminal/Divider/ResizeDivider"
 
 type MainPageProps = {}
 
