@@ -13,7 +13,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
 
     const bgOpacity = isHovered || isFocused ? 'AA' : '77'
 
-    const border = `2px solid ${background.hoverColor}${bgOpacity}`
+    const border = isHovered ?`2px solid ${'#5C88C4'}` : `2px solid ${background.hoverColor}${bgOpacity}`
+
 
     const iconStyle = {
         font: font.contentFont,
@@ -28,6 +29,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => setIsFocused(true)}
             style={{
+                cursor: 'pointer',
                 position:'relative',
                 alignSelf: 'center',
                 display: 'flex',
@@ -37,8 +39,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
                 border,
                 borderRadius: ui.elementBorderRadius,
                 padding: '10px',
-                width: '45%',
-                minWidth: '300px',
+                width: '300px',
                 // width: isFocused ? '900px' : 'auto',
                 height: '40px',
                 font: font.contentFont,
@@ -54,7 +55,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
             {!isFocused ?
                 <div
                     style={{
-                        cursor: 'pointer',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',

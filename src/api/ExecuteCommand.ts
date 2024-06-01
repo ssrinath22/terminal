@@ -1,22 +1,21 @@
 import { invoke } from '@tauri-apps/api/tauri'
 
-const executeCommand = async (command: string): Promise<string> => {
-    try {
-        const result:string = await invoke('execute_shell_command', { command: command})
-        // console.log(result)
-        return result
-    } catch (error) {
-        console.error(error)
-        return `Error: ${error}`
-    }
-}
-const executeInteractiveCommand = async (command: string, args: string[] = []): Promise<string> => {
-    try {
-        const result: string = await invoke('run_command', { command, args })
-        return result
-    } catch (error) {
-        return `Error: ${error}`
-    }
+let outputCallback: ((output: string) => void) | null = null
+
+export const setOutputCallback = (callback: (output: string) => void) => {
+    outputCallback = callback
 }
 
-export { executeCommand, executeInteractiveCommand }
+export const executeCommand = async (command: string) => {
+    await invoke('execute_command', { command })
+}
+
+export const dummyExecuteCommand = (command: string) => {
+        return `Command executed: ${command}`
+}
+
+window.addEventListener('tauri://update-output', (event: any) => {
+    if (outputCallback) {
+        outputCallback(event.payload)
+    }
+})

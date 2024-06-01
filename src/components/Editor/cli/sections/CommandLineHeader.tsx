@@ -58,14 +58,14 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
     const gitPadding = generalPadding
     const gitBorderRadius = generalBorderRadius
 
-    useEffect(() =>{
-        const updateDir = async () => {
-            const newDir = await executeCommand('pwd')
-            setDir(newDir)
-        }
+    // useEffect(() =>{
+    //     const updateDir = async () => {
+    //         const newDir = await executeCommand('pwd')
+    //         setDir(newDir)
+    //     }
 
-        updateDir()
-    },[])
+    //     updateDir()
+    // },[])
 
     return (
         <div

@@ -29,6 +29,7 @@ const CommandLineResponse: React.FC<CommandLineResponseProps> = ({ isActive = tr
                 flexGrow:1,
                 boxSizing:'border-box',
                 padding:'3px',
+                overflow:'scroll',
             }}
         >
             <div
@@ -39,8 +40,9 @@ const CommandLineResponse: React.FC<CommandLineResponseProps> = ({ isActive = tr
                     fontWeight: font.responseFontWeight,
                     fontSize: font.editorFontSize,
                     display: 'flex',
+                    flexDirection:'column',
                     justifyContent: 'center',
-                    alignItems: 'center',
+                    alignItems: 'start',
                     textAlign:'start',
                 }}
             >

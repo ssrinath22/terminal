@@ -10,7 +10,7 @@ type EditorArea = {
 }
 
 
-const EditorArea: React.FC<EditorArea> = ({ name, activeSection }) => {
+const EditorArea: React.FC<EditorArea> = ({ name, activeSection}) => {
     const [focusedTab, setFocusedTab] = useState<string>('')
     const [openTabs, setOpenTabs] = useState<string[]>(['hello world', 'yep','1','2','3','4','6','7','9','10','98','123','2134','1214','325','252456'])
 
@@ -40,8 +40,7 @@ const EditorArea: React.FC<EditorArea> = ({ name, activeSection }) => {
                 position: 'relative',
                 display: (activeSection === currId || activeSection === altId) ? 'flex' : 'none',
                 maxHeight: '100%',
-                width: '100%',
-                maxWidth: '100%',
+                width: `100%`,
                 overflow:'hidden',
                 flexDirection: 'column',
                 padding: '5px 6px',

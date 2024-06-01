@@ -1,16 +1,78 @@
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../app/store"
-import { DarkMode, LightMode } from "@mui/icons-material"
+import { DarkMode, LightMode, NightShelter } from "@mui/icons-material"
 import { toggleTheme } from '../features/theme/themeSlice'
+import { toggleDescriptions } from "../features/Settings/settingsSlice"
 
-type SettingsAreaProps = {
-    name:string 
-    activeSection:string
+type OnOffSwitchProps = {
+    action: () => void
+    on: boolean
+    onDesc: string
+    offDesc: string
 }
 
-const SettingsArea: React.FC<SettingsAreaProps> = ({name, activeSection }) => {
+const OnOffSwitch: React.FC<OnOffSwitchProps> = ({ action, on, onDesc, offDesc }) => {
+    const { background, font, ui, icon } = useSelector((state: RootState) => state.theme)
+
+    const size = icon.iconSizeSmall
+    const ballLoc = on ? 'start' : 'end'
+    const textStyle = {
+        fontSize: icon.iconDescSizeMed,
+        color: font.contentColor,
+        fontFamily: font.contentFont,
+        fontWeight: font.contentFontWeight,
+    } as React.CSSProperties
+    return (
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: ui.uiSpacing,
+            }}
+        >
+            <span style={textStyle}>{onDesc}</span>
+            <div
+                style={{
+                    position: 'relative',
+                    width: 2 * size,
+                    height: size,
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    boxSizing: 'border-box',
+                    // border: `1px solid ${background.accentColor2}`,
+                    backgroundColor: `${background.accentColor2}55`,
+                    borderRadius: size,
+                }}
+            >
+                <div
+                    onClick={action}
+                    style={{
+                        position: 'absolute',
+                        left: on ? 0 : size,
+                        width: size,
+                        height: size,
+                        backgroundColor: background.accentColor2,
+                        // border: `1px solid ${background.accentColor2}`,
+                        borderRadius: size,
+                        transition: 'left .2s',
+                    }}
+                />
+            </div>
+            <span style={textStyle}>{offDesc}</span>
+        </div>
+
+    )
+}
+type SettingsAreaProps = {
+    name: string
+    activeSection: string
+}
+
+const SettingsArea: React.FC<SettingsAreaProps> = ({ name, activeSection }) => {
     const dispatch = useDispatch()
     const { background, font, ui, icon, mode } = useSelector((state: RootState) => state.theme)
+    const {accessibility} = useSelector((state: RootState) => state.settings)
     const { username } = useSelector((state: RootState) => state.user)
     const isActive = (`section-${name}` === activeSection)
 
@@ -20,7 +82,7 @@ const SettingsArea: React.FC<SettingsAreaProps> = ({name, activeSection }) => {
                 width: '100%',
                 height: '100%',
                 display: isActive ? 'flex' : 'none',
-                gap: ui.uiSpacing,
+                gap: ui.uiSpacing * 2,
                 textAlign: 'start',
                 flexDirection: 'column',
                 boxSizing: 'border-box',
@@ -31,31 +93,23 @@ const SettingsArea: React.FC<SettingsAreaProps> = ({name, activeSection }) => {
                 color: font.contentColor,
             }}
         >
-            <span> Theme Mode</span> <br />
+            <span> Theme Mode</span>
+            <OnOffSwitch
+                action={() => dispatch(toggleTheme())}
+                on={mode === 'default'}
+                onDesc={"light"}
+                offDesc={"dark"}
+            />
+            <br />
+            <span>Descriptions</span>
+            <OnOffSwitch
+                action={() => dispatch(toggleDescriptions())}
+                on={accessibility.descriptions === true}
+                onDesc={"on"}
+                offDesc={"off"}
+            />
 
-            {
-                (mode === "dark")
-                    ?
-                    <DarkMode
-                        onClick={() => dispatch(toggleTheme())}
-                        style={{
-                            cursor: 'pointer',
-                            color: background.hoverColor,
-                            width: icon.iconSizeLarge,
-                            height: icon.iconSizeLarge,
-                        }}
-                    />
-                    :
-                    <LightMode
-                        onClick={() => dispatch(toggleTheme())}
-                        style={{
-                            cursor: 'pointer',
-                            color: background.hoverColor,
-                            width: icon.iconSizeLarge,
-                            height: icon.iconSizeLarge,
-                        }}
-                    />
-            }
+
 
         </div>
     )
