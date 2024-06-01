@@ -4,8 +4,6 @@ import { useSelector } from "react-redux"
 import { RootState } from "../../../app/store"
 import Tab from "./components/Tab"
 
-
-
 type TabsContainerProps = {
     focusedTab: string
     setFocusedTab: (id: string) => void
@@ -43,6 +41,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ focusedTab, setFocusedTab
             }}
         >
                 <div
+                    className="hide-scrollbar"
                     style={{
                         display: 'flex',
                         flexDirection: 'row',

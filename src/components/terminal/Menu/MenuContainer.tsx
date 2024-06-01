@@ -51,7 +51,7 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ activeSection, setActiveS
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: 5,
+                    gap: ui.uiSpacing,
                     overflow:'auto',
                     scrollbarWidth:'none',
                 }}

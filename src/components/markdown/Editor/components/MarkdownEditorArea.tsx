@@ -3,6 +3,7 @@ import Prism from 'prismjs'
 import 'prismjs/themes/prism.css'
 import { useSelector } from "react-redux"
 import { RootState } from "../../../../app/store"
+import replaceRules from "../function/ReplaceRules"
 
 type MarkdownEditorAreaProps = {
     markdown: string 
@@ -12,6 +13,11 @@ type MarkdownEditorAreaProps = {
 const MarkdownEditorArea: React.FC<MarkdownEditorAreaProps> = ({ markdown, setMarkdown }) => {
     const highlight = (code: string) => Prism.highlight(code, Prism.languages.markdown, 'markdown')
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
+
+    const handleValueChange = (code: string) => {
+        const parsedCode = replaceRules(code)
+        setMarkdown(parsedCode)
+    }
 
     return (
         <div
@@ -26,12 +32,13 @@ const MarkdownEditorArea: React.FC<MarkdownEditorAreaProps> = ({ markdown, setMa
                 borderRadius: ui.elementBorderRadius,
                 textAlign: 'left',
                 overflowY: 'auto',
+                border: ui.border,
             }}
         >
             <Editor
                 value={markdown}
                 padding={10}
-                onValueChange={(code) => setMarkdown(code)}
+                onValueChange={handleValueChange}
                 highlight={highlight}
                 style={{
                     width: '100%',
@@ -39,9 +46,7 @@ const MarkdownEditorArea: React.FC<MarkdownEditorAreaProps> = ({ markdown, setMa
                     fontSize: font.editorFontSize,
                 }}
             />
-
         </div>
     )
 }
-
 export default MarkdownEditorArea

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../app/store"
 import { DarkMode, LightMode, NightShelter } from "@mui/icons-material"
 import { toggleTheme } from '../../features/theme/themeSlice'
-import { toggleDescriptions } from "../../features/Settings/settingsSlice"
+import { toggleDescriptions } from "../../features/settings/settingsSlice"
 
 type OnOffSwitchProps = {
     action: () => void

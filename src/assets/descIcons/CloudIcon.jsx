@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux"
 
 function Icon() {
-    const { icon } = useSelector((state) => state.theme)
+    const { ui, icon } = useSelector((state) => state.theme)
 
     return (
         <svg

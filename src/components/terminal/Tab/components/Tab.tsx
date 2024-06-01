@@ -2,7 +2,6 @@ import { Close, Cloud } from "@mui/icons-material"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../../../../app/store"
-
 import { TerminalSession, CloudIcon } from '../../../../assets/descIcons'
 
 type TabProps = {

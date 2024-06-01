@@ -42,7 +42,7 @@ const Editor: React.FC<EditorProps> = ({ tab, isActive, layer }) => {
         >
             <MarkdownEditorArea markdown={markdown} setMarkdown={setMarkdown} />
 
-            {/* <MarkdownRenderedArea markdownSrc={markdown} /> */}
+            <MarkdownRenderedArea markdownSrc={markdown} />
 
         </div>
     )

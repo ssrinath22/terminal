@@ -50,9 +50,10 @@ const Tab: React.FC<TabProps> = ({ name, focusedTab, setFocusedTab, closeTab, ma
                 borderRadius: ui.elementBorderRadius,
                 boxShadow: isActive ? ui.boxShadow : 'none',
                 userSelect: 'none',
+                WebkitUserSelect: 'none',
                 overflow: 'hidden',
                 textOverflow: 'ellipse',
-                padding: '0px 5px',
+                padding: '0px 10px',
                 gap: ui.uiSpacing,
             }}
         >

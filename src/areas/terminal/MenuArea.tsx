@@ -21,7 +21,7 @@ const MenuArea: React.FC<MenuArea> = ({activeSection, setActiveSection}) => {
     }, [activeSection])
 
     return (
-        <div //outer container
+        <div
             style={{
                 position:'relative',
                 zIndex: 2,

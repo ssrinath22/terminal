@@ -56,7 +56,6 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
                 color: icon.iconDescColor,
                 userSelect: 'none',
                 WebkitUserSelect:'none',
-                cursor:'default',
                 gap: ui.uiSpacing,
             }}
         >

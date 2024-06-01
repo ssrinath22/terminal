@@ -65,11 +65,13 @@ const defaultBackgroundState: BackgroundState = {
     accentColor2: '#DD5746',
     iconColor: '#B4CCB9',
     hoverColor: '#E0E0E0',
-    editorColor: '#f3f3f3',
+    // editorColor: '#f3f3f3',
+    editorColor: '#FFF',
+
 }
 const defaultFontState: FontState = {
     editorFont:  '"Fira code", "Fira Mono", monospace',
-    editorFontSize: sizeOptions.fontSizeMed,
+    editorFontSize: sizeOptions.fontSizeLarge,
     contentColor: '#3C3633',
     contentFont: 'Roboto, sans-serif',
     contentFontSize: sizeOptions.fontSizeMed,
@@ -78,11 +80,13 @@ const defaultFontState: FontState = {
     responseFontWeight: 800,
 }
 const defaultElementState = {
-    elementBorderRadius: 5,
+    elementBorderRadius: 10,
     uiSpacing: 5,
-    border: `1px solid ${defaultBackgroundState.hoverColor}`,
-    boxShadow: `${defaultBackgroundState.accentColor}44 0px 0px 3px`,
-    tabSelectColor: defaultBackgroundState.mainColor,
+    // border: `1px solid ${defaultBackgroundState.hoverColor}`,
+    border: ``,
+    // boxShadow: `${defaultBackgroundState.accentColor}FF 0px 0px 1px`,
+    boxShadow: ``,
+    tabSelectColor: defaultBackgroundState.hoverColor,
 }
 const defaultIconState = {
     iconColorMain: '#B4CCB9',

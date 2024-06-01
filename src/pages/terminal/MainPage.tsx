@@ -6,8 +6,6 @@ import { useEffect, useState } from "react"
 import EnvironmentArea from "../../areas/terminal/EnvironmentArea"
 import HeaderArea from "../../areas/terminal/HeaderArea"
 import SettingsArea from "../../areas/terminal/SettingsArea"
-import { DragIndicator } from "@mui/icons-material"
-import ResizerDivider from "../../components/terminal/Divider/ResizeDivider"
 
 type MainPageProps = {}
 
