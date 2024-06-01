@@ -60,7 +60,6 @@ const Editor: React.FC<EditorProps> = ({ tab, isActive, layer }) => {
                 justifyContent: 'start',
                 flexDirection: 'column',
                 alignItems: 'start',
-                backgroundColor: background.mainColor,
                 overflowX: 'hidden',
                 scrollbarWidth: 'thin',
                 scrollbarGutter: 'stable',

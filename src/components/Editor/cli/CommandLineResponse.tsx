@@ -9,9 +9,13 @@ type CommandLineResponseProps = {
 }
 
 const CommandLineResponse: React.FC<CommandLineResponseProps> = ({ isActive = true, response }) => {
-    const { background, font } = useSelector((state: RootState) => state.theme)
+    const { background, font, ui } = useSelector((state: RootState) => state.theme)
 
-    const backgroundOpacity = '00'
+    const backgroundOpacity = 'FF'
+
+    useEffect(() => {
+        console.log("Response changed in CLR ", response)
+    }, [response])
 
     return (
         <div
@@ -21,43 +25,31 @@ const CommandLineResponse: React.FC<CommandLineResponseProps> = ({ isActive = tr
                 display: !isActive ? 'flex' : 'none',
                 justifyContent: 'start',
                 alignItems: 'center',
-                // border: active ? `1px solid ${background.accentColor}` : '',
-                backgroundColor: `${background.accentColor2}${backgroundOpacity}`,
-                padding: '0px 0px',
                 gap: 5,
+                flexGrow:1,
+                boxSizing:'border-box',
+                padding:'3px',
+                overflow:'scroll',
             }}
         >
-            <span
-                style={{
-                    height: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
-            >
-                <NavigateNext
-                    style={{
-                        color: font.contentColor,
-                        cursor: 'pointer',
-                        width: font.contentFontSize,
-                    }}
-                />
-            </span>
-            <span
+            <div
                 style={{
                     height: '100%',
                     color: font.contentColor,
-                    fontFamily: font.contentFont,
+                    fontFamily: font.editorFont,
                     fontWeight: font.responseFontWeight,
-                    fontSize: font.contentFontSize,
-                    padding: '2px 0px', //just to ge thte height to be normalized
+                    fontSize: font.editorFontSize,
                     display: 'flex',
+                    flexDirection:'column',
                     justifyContent: 'center',
-                    alignItems: 'center',
+                    alignItems: 'start',
+                    textAlign:'start',
                 }}
             >
-                {response}
-            </span>
+                {response.split('\n').map((line, index) => (
+                    <div key={index}>{line}</div>
+                ))}
+            </div>
         </div>
 
     )

@@ -68,6 +68,7 @@ const AddTab: React.FC<AddTabProps> = ({ addTab, openTabs }) => {
                         fontFamily: font.contentFont,
                         fontSize: font.contentFontSize,
                         fontWeight: font.contentFontWeight,
+                        color: font.contentColor,
                         outline: 'none',
                         border: 'none',
                         padding: '0px 10px',

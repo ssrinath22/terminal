@@ -10,7 +10,7 @@ type CommandLineInputProps = {
 }
 
 const CommandLineInput: React.FC<CommandLineInputProps> = ({ currentCommand, setCurrentCommand, setReadyToExecute, isActive = true }) => {
-    const { background, font } = useSelector((state: RootState) => state.theme)
+    const { background, font, ui } = useSelector((state: RootState) => state.theme)
 
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -29,6 +29,7 @@ const CommandLineInput: React.FC<CommandLineInputProps> = ({ currentCommand, set
         <div
             style={{
                 width: '69%',
+                height: '100%',
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'start',
@@ -36,10 +37,9 @@ const CommandLineInput: React.FC<CommandLineInputProps> = ({ currentCommand, set
                 borderRadius: '5px',
                 padding: '1px 2px',
                 color: font.contentColor,
-                fontFamily: font.contentFont,
-                fontSize: font.contentFontSize,
+                fontFamily: font.editorFont,
+                fontSize: font.editorFontSize,
                 fontWeight: font.contentFontWeight,
-                backgroundColor: background.mainColor,
             }}
         >
 
@@ -54,9 +54,9 @@ const CommandLineInput: React.FC<CommandLineInputProps> = ({ currentCommand, set
                     border: 'none',
                     outline: 'none',
                     color: font.contentColor,
-                    fontFamily: font.contentFont,
-                    fontSize: font.contentFontSize,
-                    fontWeight: font.contentFontWeight,
+                    fontFamily: font.editorFont,
+                    fontSize: font.editorFontSize,
+                    fontWeight: font.headerFontWeight,
                     width: '100%',
                 }}
             />
