@@ -1,24 +1,24 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../../app/store'
 import { useEffect, useState } from 'react'
-import { MarkdownEditorArea, MarkdownRenderedArea } from './components'
+import { MarkdownEditorArea, MarkdownRenderedArea } from './components/markdown'
+import { LatexEditorArea, LatexRenderedArea } from './components/latex'
+import { TabInfo } from '../../../areas/markdown/EditorArea'
+import { EditorType } from '../../../types/editor'
 
 import 'prismjs/components/prism-markdown'
 
 type EditorProps = {
-    tab: string
     isActive: boolean
     layer: number
+    editorType?: EditorType
 }
 
-const Editor: React.FC<EditorProps> = ({ tab, isActive, layer }) => {
+const Editor: React.FC<EditorProps> = ({ isActive, layer, editorType = 'markdown' }) => {
     /** Global States */
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
-    const dispatch = useDispatch()
 
-    // Local state for markdown content
-    const [markdown, setMarkdown] = useState<string>('')
-    //'"Fira code", "Fira Mono", monospace'
+    const [code, setCode] = useState<string>('')
 
     return (
         <div
@@ -31,18 +31,35 @@ const Editor: React.FC<EditorProps> = ({ tab, isActive, layer }) => {
                 justifyContent: 'start',
                 flexDirection: 'row',
                 alignItems: 'start',
-                overflowX: 'hidden',
-                scrollbarWidth: 'thin',
-                scrollbarGutter: 'stable',
+                overflow: 'hidden',
                 backgroundColor: background.editorColor,
                 color: font.contentColor,
                 gap: ui.uiSpacing,
                 boxSizing: 'border-box',
             }}
         >
-            <MarkdownEditorArea markdown={markdown} setMarkdown={setMarkdown} />
+            {
+                (editorType === 'markdown') &&
+                <>
+                    <MarkdownEditorArea markdown={code} setMarkdown={setCode} />
+                    <MarkdownRenderedArea markdownSrc={code} />
+                </>
+            }
 
-            <MarkdownRenderedArea markdownSrc={markdown} />
+            {
+                (editorType === 'latex') &&
+                <>
+                    <LatexEditorArea latex={code} setLatex={setCode} />
+                    <LatexRenderedArea latexSrc={code} />
+                </>
+            }
+            
+            {
+                (editorType == 'quick notes') && 
+                <>
+                    This editor type has not yet been implemented
+                </>
+            }
 
         </div>
     )

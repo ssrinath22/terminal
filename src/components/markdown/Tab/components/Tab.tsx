@@ -2,36 +2,44 @@ import { Close, Cloud } from "@mui/icons-material"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../../../../app/store"
+import { LatexIcon, MarkdownIcon, QuickNotesIcon } from "../../../../assets/typeIcons"
+import { TabInfo } from "../../../../areas/markdown/EditorArea"
+import { EditorType } from "../../../../types/editor"
 
-import { TerminalSession, CloudIcon } from '../../../../assets/descIcons'
+export const EditorTypeIcon: React.FC<{type:EditorType, isSmall?: boolean}> = ({type, isSmall = false}) => {
+    const editorTypeIcons = {
+        'markdown' : <MarkdownIcon isSmall={isSmall}/>,
+        'latex' : <LatexIcon isSmall={isSmall}/>,
+        'quick notes' : <QuickNotesIcon isSmall={isSmall} />
+    }
+
+    return(
+        editorTypeIcons[type]
+    )
+}
 
 type TabProps = {
-    name: string
+    currTab: TabInfo
     focusedTab: string
     setFocusedTab: (arg0: string) => void
-    closeTab: (arg0: string) => void
+    closeTab: (arg0: TabInfo) => void
     mandatory?: boolean
 }
 
-const Tab: React.FC<TabProps> = ({ name, focusedTab, setFocusedTab, closeTab, mandatory = false }) => {
+const Tab: React.FC<TabProps> = ({ currTab, focusedTab, setFocusedTab, closeTab, mandatory = false }) => {
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
     const [isHovered, setIsHovered] = useState<boolean>(false)
     const [closeIsHovered, setCloseIsHovered] = useState<boolean>(false)
-    const isActive = (focusedTab === `tab-${name}`)
-    const iconStyle = {
-        font: font.contentFont,
-        fontSize: font.contentFontSize,
-        fontFamily: font.contentFont,
-        fontWeight: font.contentFontWeight,
-
-    } as React.CSSProperties
+    const isActive = (focusedTab === `tab-${currTab.tabName}`)
 
 
     return (
         <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            onClick={() => setFocusedTab(`tab-${name}`)}
+            onClick={() => {
+                setFocusedTab(`tab-${currTab.tabName}`)
+            }}
             style={{
                 position: 'relative',
                 display: 'flex',
@@ -66,7 +74,7 @@ const Tab: React.FC<TabProps> = ({ name, focusedTab, setFocusedTab, closeTab, ma
                     minWidth: '20px',
                 }}
             >
-                <CloudIcon />
+                {<EditorTypeIcon type={currTab.tabType} isSmall={true} />}
             </span>
             <span
                 style={{
@@ -78,7 +86,7 @@ const Tab: React.FC<TabProps> = ({ name, focusedTab, setFocusedTab, closeTab, ma
                     overflow:'hidden',
                 }}
             >
-                {name}
+                {currTab.tabName}
                 {!mandatory &&
                     <div
                         style={{
@@ -96,10 +104,11 @@ const Tab: React.FC<TabProps> = ({ name, focusedTab, setFocusedTab, closeTab, ma
                         }}
                     >
                         <Close
-                            onClick={() => closeTab(name)}
+                            onClick={() => closeTab(currTab)}
                             onMouseEnter={() => setCloseIsHovered(true)}
                             onMouseLeave={() => setCloseIsHovered(false)}
                             style={{
+                                cursor: 'pointer',
                                 width: font.contentFontSize,
                                 color: font.contentColor,
                             }}

@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../app/store'
-import { Avatar, IconButton } from '@mui/material'
-import SettingsIcon from '@mui/icons-material/Settings'
-import ManIcon from '../../assets/userIcons/ManIcon'
-import { KeyboardCommandKey, Search } from '@mui/icons-material'
-import SearchBar from '../../components/terminal/Header/components/SearchBar'
+import SearchBar from '../../components/markdown/Header/components/SearchBar'
 
 
 type HeaderAreaProps = {}
@@ -25,32 +21,11 @@ const HeaderArea: React.FC<HeaderAreaProps> = ({ }) => {
                 borderBottom: `1px solid ${background.hoverColor}`,
                 boxSizing: 'border-box',
                 width: '100%',
+                backgroundColor: background.headerColor,
             }}
         >
             {/** Search Bar */}
             <SearchBar />
-
-            {/** Settings & User Profile */}
-            {/* <div
-                style={{
-                    position: 'absolute',
-                    right: 20,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: '100%',
-                    width: '35px',
-                    height: '35px',
-                    backgroundColor: `${background.accentColor2}`,
-                    padding: '0px',
-                    boxSizing: 'border-box',
-                    overflow: 'hidden',
-                }}
-            >
-                <ManIcon
-                />
-            </div> */}
 
         </div>
     )

@@ -1,61 +1,73 @@
-import { KeyboardCommandKey } from "@mui/icons-material"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../../../../app/store"
+import { Close, Search } from "@mui/icons-material"
 
 type SearchBarProps = {}
 
 const SearchBar: React.FC<SearchBarProps> = ({ }) => {
-    const { background, font, ui } = useSelector((state: RootState) => state.theme)
+    const { background, font, icon, ui } = useSelector((state: RootState) => state.theme)
     const [isHovered, setIsHovered] = useState<boolean>(false)
     const [isFocused, setIsFocused] = useState<boolean>(false)
-    const [searchVal, setSearchVal] = useState<string>('')
+    const divRef = useRef<HTMLDivElement>(null)
 
-    const bgOpacity = isHovered || isFocused ? 'AA' : '77'
+    const bgOpacity = isHovered || isFocused ? '33' : '22'
+    const border = isFocused ? `1px solid ${'#AAD7D9'}77` : `1px solid ${background.hoverColor}`
 
-    const border = isHovered ?`2px solid ${'#5C88C4'}` : `2px solid ${background.hoverColor}${bgOpacity}`
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (divRef.current && !divRef.current.contains(event.target as Node)) {
+                setIsFocused(false)
+            }
+        }
 
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [divRef])
 
-    const iconStyle = {
-        font: font.contentFont,
-        fontSize: font.contentFontSize,
-        fontFamily: font.contentFont,
-        fontWeight: font.contentFontWeight,
-    } as React.CSSProperties
 
     return (
         <div
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onClick={() => setIsFocused(true)}
             style={{
-                cursor: 'pointer',
-                position:'relative',
-                alignSelf: 'center',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: ui.uiSpacing,
-                border,
+                backgroundColor: background.mainColor,
                 borderRadius: ui.elementBorderRadius,
-                padding: '10px',
-                width: '300px',
-                // width: isFocused ? '900px' : 'auto',
-                height: '40px',
-                font: font.contentFont,
-                fontSize: font.contentFontSize,
-                fontFamily: font.contentFont,
-                fontWeight: font.contentFontWeight,
-                color: '#777777',
-                backgroundColor: `${background.hoverColor}${bgOpacity}`,
-                userSelect: 'none',
-                boxSizing: 'border-box',
             }}
         >
-            {!isFocused ?
+            <div
+                ref={divRef}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={() => setIsFocused(true)}
+                style={{
+                    position: 'relative',
+                    cursor: isFocused ? 'default' : 'pointer',
+                    alignSelf: 'center',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: ui.uiSpacing,
+                    border,
+                    borderRadius: ui.elementBorderRadius,
+                    borderBottomLeftRadius: isFocused ? 0 : ui.elementBorderRadius,
+                    borderBottomRightRadius: isFocused ? 0 : ui.elementBorderRadius,
+                    padding: '10px',
+                    width: isFocused ? '600px' : '300px',
+                    height: '40px',
+                    font: font.contentFont,
+                    fontSize: font.contentFontSize,
+                    fontFamily: font.contentFont,
+                    fontWeight: font.contentFontWeight,
+                    color: font.contentColor,
+                    backgroundColor: isFocused ? `${background.accentColor3}44` : `${background.accentColor3}${bgOpacity}`,
+                    userSelect: 'none',
+                    boxSizing: 'border-box',
+                }}
+            >
                 <div
                     style={{
-                        display: 'flex',
+                        display: isFocused ? 'none' : 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
                         gap: ui.uiSpacing,
@@ -67,59 +79,94 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
                             justifyContent: 'center',
                             alignItems: 'center',
                             gap: ui.uiSpacing,
+                            borderRadius: ui.elementBorderRadius,
+                            backgroundColor: background.accentColor2,
+                            padding: '5px',
+                            color: background.mainColor,
                         }}
-                    >   
-                        
-                        <KeyboardCommandKey style={iconStyle} />
-                        <>K</>
+                    >
+                        ⌘K
                     </span>
-                    <> | </>
-                    <span>Search</span>
-                </div>
-                :
-                <input
-                    type='text'
-                    onBlur={() => setIsFocused(false)}
-                    value={searchVal}
-                    style={{
-                        backgroundColor: 'transparent',
-                        border: 'none',
-                        outline: 'none',
-                        font: font.contentFont,
-                        fontSize: font.contentFontSize,
-                        fontFamily: font.contentFont,
-                        fontWeight: font.contentFontWeight,
-                        color: font.contentColor,
-                        width: '100%',
-                    }}
-                    onChange={(e) => setSearchVal(e.currentTarget.value)}
-                    autoFocus
-                />
-            }
-            <div
 
-                style={{
-                    zIndex:10000000,
-                    position:'absolute',
-                    display: isFocused ? 'flex' : 'none',
-                    top: '120%',
-                    left: 0,
-                    width: '100%',
-                    backgroundColor: `${background.hoverColor}`,
-                    backdropFilter: 'blur(10px)',
-                    border: ui.border,
-                    borderRadius: ui.elementBorderRadius,
-                    padding: '10px',
-                    font: font.contentFont,
-                    fontSize: font.contentFontSize,
-                    fontFamily: font.contentFont,
-                    fontWeight: font.contentFontWeight,
-                    color: font.contentColor,
-                    gap: ui.uiSpacing,
-                    boxSizing: 'border-box',
-                }}
-            >
-                <span>Searching For {searchVal.length > 0 ? searchVal : "..."}</span>
+                    <span>
+                        Search Anything
+                    </span>
+                </div>
+                <div
+                    style={{
+                        display: isFocused ? 'flex' : 'none',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        gap: ui.uiSpacing,
+                        width: '100%',
+                        height: '100%',
+                    }}
+                >
+                    <input
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            border: 'none',
+                            outline: 'none',
+                            font: font.contentFont,
+                            fontSize: font.contentFontSize,
+                            fontFamily: font.contentFont,
+                            fontWeight: font.contentFontWeight,
+                            backgroundColor: 'transparent',
+                            color: font.contentColor,
+                        }}
+                    />
+                    <div
+                        style={{
+                            height: '100%',
+                        }}
+                    >
+                        <Search
+                            style={{
+                                width: icon.iconSize,
+                                height: 'auto',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                alignSelf: 'end',
+                                color: font.contentColor,
+                            }}
+                        />
+                    </div>
+
+                </div>
+
+                <div
+                    style={{
+                        backgroundColor: background.mainColor,
+                        position: 'absolute',
+                        zIndex: 2,
+                        top: '100%',
+                        display: isFocused ? 'flex' : 'none',
+                    }}
+                >
+                    <span
+                        style={{
+                            width: '600px',
+                            minHeight: '100px',
+                            maxHeight: '400px',
+                            overflowY: 'auto',
+                            flexGrow: 1,
+                            padding: '10px',
+                            backgroundColor: `${background.accentColor3}${bgOpacity}`,
+                            backdropFilter: 'blur(10px)',
+                            border,
+                            borderBottomLeftRadius: ui.elementBorderRadius,
+                            borderBottomRightRadius: ui.elementBorderRadius,
+                            borderTopLeftRadius: 0,
+                            borderTopRightRadius: 0,
+                            boxSizing: 'border-box',
+                        }}>
+
+                    </span>
+                </div>
+
             </div>
         </div>
     )

@@ -20,7 +20,7 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ activeSection, setActiveS
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
     const [settingsActive, setSettingsActive] = useState<boolean>(false)
     const [sections, setSections] = useState<Section[]>([
-        {name: 'terminal', icon: <TerminalIcon />},
+        {name: 'editor', icon: <TerminalIcon />},
         // {name: 'environment', icon: <EnvironmentIcon />},
         {name: 'git', icon: <TreeIcon />},
         {name: 'docs', icon: <DocumentsIcon />},

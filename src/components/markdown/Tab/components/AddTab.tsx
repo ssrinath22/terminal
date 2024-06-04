@@ -1,11 +1,16 @@
 import { Add } from "@mui/icons-material"
-import { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../../../../app/store"
+import { TabInfo } from "../../../../areas/markdown/EditorArea"
+import { MarkdownIcon, LatexIcon } from "../../../../assets/typeIcons"
+import EditorOptions from "./EditorOptions"
+import { EditorType } from "../../../../types/editor"
+
 
 type AddTabProps = {
-    addTab: (arg0: string) => void
-    openTabs: string[]
+    addTab: (arg0: TabInfo) => void
+    openTabs: TabInfo[]
 }
 
 const AddTab: React.FC<AddTabProps> = ({ addTab, openTabs }) => {
@@ -13,95 +18,59 @@ const AddTab: React.FC<AddTabProps> = ({ addTab, openTabs }) => {
     const [isHovered, setIsHovered] = useState<boolean>(false)
     const [getTabNameActivated, setGetTabNameActivated] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)
+    const divRef = useRef<HTMLDivElement>(null)
 
-    const handleNewTabOpened = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if(error) setError(false)
-        if (e.key === 'Enter') {
-            //check for duplicate tab error
-            if (openTabs.includes(e.currentTarget.value)) {
-                // e.currentTarget.value = "Duplicate Name"
-                setError(true)
-                e.currentTarget.value = ""
-                setIsHovered(false)
-            }
-            else {
-                addTab(e.currentTarget.value)
-                e.currentTarget.value = ""
+    const handleNewTabOpened = (tabType: EditorType) => {
+        if (error) setError(false)
+        const tabName = `newtab ${openTabs.length + 1}`
+        if (tabName) {
+            addTab({ tabName, tabType })
+        }
+        setGetTabNameActivated(false)
+        setIsHovered(false)
+    }
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (divRef.current && !divRef.current.contains(event.target as Node)) {
                 setGetTabNameActivated(false)
-                setIsHovered(false)
             }
         }
-    }
+
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [divRef])
 
     return (
         <div
+            ref={divRef}
             style={{
                 position: 'relative',
                 cursor: 'default',
                 padding: '7px 7px',
-                backgroundColor: isHovered && !getTabNameActivated ? background.hoverColor : background.mainColor,
+                height: '100%',
+                backgroundColor: isHovered || getTabNameActivated ? background.hoverColor : background.mainColor,
                 borderRadius: ui.elementBorderRadius,
                 userSelect: 'none',
             }}
         >
-            {!getTabNameActivated ?
-                <Add
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                    onClick={() => setGetTabNameActivated(true)}
-                    style={{
-                        display: !getTabNameActivated ? 'auto' : 'none',
-                        color: font.contentColor,
-                        width: font.contentFontSize,
-                        height: 'auto',
-                    }}
-                />
-                :
-                <input
-                    autoFocus
-                    placeholder="New Tab"
-                    type='text'
-                    style={{
-                        display: 'flex',
-                        width: 'auto',
-                        maxWidth: '80px',
-                        fontFamily: font.contentFont,
-                        fontSize: font.contentFontSize,
-                        fontWeight: font.contentFontWeight,
-                        color: font.contentColor,
-                        outline: 'none',
-                        border: 'none',
-                        padding: '0px 10px',
-                        backgroundColor: 'transparent',
-                    }}
-                    onBlur={() => setGetTabNameActivated(false)}
-                    onKeyDown={handleNewTabOpened}
-                />
-            }
-
-            <div
+            <Add
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={() => setGetTabNameActivated(true)}
                 style={{
-                    zIndex: 100000000,
-                    position: 'absolute',
-                    top: '110%',
-                    right: 0,
-                    width: '150px',
-                    height: '30px',
-                    display: error ? 'flex' : 'none',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    color: background.mainColor,
-                    backgroundColor: background.accentColor2,
-                    borderRadius: ui.elementBorderRadius,
-                    fontFamily: font.contentFont,
-                    fontSize: font.contentFontSize,
-                    fontWeight: font.contentFontWeight * 2,
+                    display: 'auto',
+                    color: font.contentColor,
+                    width: font.contentFontSize,
                 }}
-            >
-                Duplicate Tab Name
-            </div>
-
-
+            />
+            {getTabNameActivated && (
+                <EditorOptions
+                    onSelect={handleNewTabOpened}
+                />
+            )}
         </div>
     )
 }

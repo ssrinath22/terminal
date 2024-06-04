@@ -1,10 +1,8 @@
 import { useSelector } from "react-redux"
-
 import { RootState } from "../../app/store"
 import { useEffect, useState } from "react"
 import EditorArea from "../../areas/markdown/EditorArea"
 import MenuArea from "../../areas/markdown/MenuArea"
-import EnvironmentArea from "../../areas/markdown/EnvironmentArea"
 import HeaderArea from "../../areas/markdown/HeaderArea"
 import SettingsArea from "../../areas/markdown/SettingsArea"
 
@@ -16,7 +14,7 @@ const MainPage: React.FC<MainPageProps> = () => {
     /** set a default active section if not alr set */
     useEffect(() => {
         if (activeSection === '') {
-            setActiveSection('section-terminal')
+            setActiveSection('section-editor')
         }
     }, [activeSection])
 
@@ -47,7 +45,7 @@ const MainPage: React.FC<MainPageProps> = () => {
                     setActiveSection={setActiveSection}
                 />
                 <EditorArea
-                    name='terminal'
+                    name='editor'
                     activeSection={activeSection}
                 />
                 <SettingsArea

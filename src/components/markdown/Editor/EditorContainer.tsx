@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux"
 import { RootState } from "../../../app/store"
 import Editor from "./Editor"
+import { TabInfo } from "../../../areas/markdown/EditorArea"
 
 type EditorContainerProps = {
-    tabs: string[]
+    tabs: TabInfo[]
     focusedTab: string
     layer: number
 }
@@ -26,23 +27,23 @@ const EditorContainer: React.FC<EditorContainerProps> = ({ tabs, focusedTab, lay
                 alignItems: 'start',
                 overflowY: 'auto',
                 scrollbarWidth:'thin',
-                border: ui.border ,
                 borderRadius: ui.elementBorderRadius,
                 boxSizing: 'border-box',
                 padding: '5px 5px',
                 backgroundColor: background.editorColor ? background.editorColor : background.mainColor,
+                border: ui.border ,
             }}
         >
             {/* <TabEditorSpacing /> */}
 
             {tabs.map((tab, index) => {
-                const currId = `editor-${tab}`
+                const currId = `editor-${tab.tabName}`
                 return (
                     <Editor
                         key={currId}
-                        tab={tab}
-                        isActive={focusedTab === `tab-${tab}`}
+                        isActive={focusedTab === `tab-${tab.tabName}`}
                         layer={layer}
+                        editorType={tab.tabType}
                     />
                 )
             })}

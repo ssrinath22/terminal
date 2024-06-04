@@ -12,9 +12,6 @@ const MenuArea: React.FC<MenuArea> = ({activeSection, setActiveSection}) => {
     const { background, ui } = useSelector((state: RootState) => state.theme)
     const {accessibility} = useSelector((state: RootState) => state.settings)
 
-    const width = accessibility.descriptions ? '75px' : '50px'
-
-
     useEffect(() => {
     }, [activeSection])
 
@@ -24,7 +21,6 @@ const MenuArea: React.FC<MenuArea> = ({activeSection, setActiveSection}) => {
                 position:'relative',
                 zIndex: 2,
                 backgroundColor: `${background.mainColor}`,
-                minWidth: width,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',

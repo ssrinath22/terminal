@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown"
 import { useSelector } from "react-redux"
-import { RootState } from "../../../../app/store"
+import { RootState } from "../../../../../app/store"
 
 type MarkdownRenderedAreaProps = {
     markdownSrc:string
@@ -12,7 +12,6 @@ const MarkdownRenderedArea:React.FC<MarkdownRenderedAreaProps> = ({markdownSrc})
     return (
         <div
                 style={{
-                    padding: ui.uiSpacing,
                     height: '100%',
                     maxHeight: '100%',
                     width: '100%',
@@ -22,7 +21,6 @@ const MarkdownRenderedArea:React.FC<MarkdownRenderedAreaProps> = ({markdownSrc})
                     borderRadius: ui.elementBorderRadius,
                     textAlign: 'left',
                     overflowY: 'auto',
-                    border: ui.border,
                     backgroundColor: background.mainColor,
                     color: background.accentColor,
                 }}>

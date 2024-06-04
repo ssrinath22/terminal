@@ -3,42 +3,45 @@ import EditorContainer from "../../components/markdown/Editor/EditorContainer"
 import TabsContainer from "../../components/markdown/Tab/TabsContainer"
 import { useSelector } from "react-redux"
 import { RootState } from "../../app/store"
+import { EditorType } from "../../types/editor"
+
+export type TabInfo = {
+    tabName: string
+    tabType: EditorType
+}
 
 type EditorArea = {
     name: string
     activeSection: string
 }
 
-
 const EditorArea: React.FC<EditorArea> = ({ name, activeSection}) => {
     const [focusedTab, setFocusedTab] = useState<string>('')
-    const [openTabs, setOpenTabs] = useState<string[]>(['hello world', 'yep'])
+    const [openTabs, setOpenTabs] = useState<TabInfo[]>([{tabName: 'hello world', tabType: 'latex'}])
 
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
 
     const currId = `section-${name}`
-    const altId = `section-${"environment"}`
 
     /* default focused tab to first tab if there is more than one tab*/
     useEffect(() => {
         if (openTabs.length > 0) {
-            setFocusedTab(`tab-${openTabs[0]}`)
+            console.log(`tab-${openTabs[0].tabName}`)
+            setFocusedTab(`tab-${openTabs[0].tabName}`)
         }
     }, [])
 
-    /* default focused tab to last tab if when current tab is closed*/
     useEffect(() => {
-        if (openTabs.length > 0) {
-            setFocusedTab(`tab-${openTabs[openTabs.length - 1]}`)
-        }
-    }, [openTabs])
+        console.log(focusedTab)
+    }, [focusedTab])
 
 
     return (
         <div
             style={{
                 position: 'relative',
-                display: (activeSection === currId || activeSection === altId) ? 'flex' : 'none',
+                display: (activeSection === currId) ? 'flex' : 'none',
+                // display:'flex',
                 maxHeight: '100%',
                 width: `100%`,
                 overflow:'hidden',

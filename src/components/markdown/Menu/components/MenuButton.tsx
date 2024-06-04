@@ -20,7 +20,9 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
     const isActive = activeSection === targetSection
     const backgroundColor = hovered || isActive ? background.hoverColor :  'transparent'
 
-    const height = accessibility.descriptions ? '60px' : '50px'
+    const height = accessibility.descriptions ? '60px' : '45px'
+    const width = accessibility.descriptions ? '75px' : '45px'
+
 
     const handleMouseEnter = () => {
         !isActive && setHovered(true)
@@ -41,13 +43,14 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
             style={{
+                cursor: 'default',
                 display: 'flex',
                 flexDirection:'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+                minWidth: width,
                 minHeight: height,
                 height: height,
-                width: '100%',
                 borderRadius: ui.elementBorderRadius,
                 backgroundColor,
                 fontFamily: font.contentFont,
@@ -57,6 +60,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
                 userSelect: 'none',
                 WebkitUserSelect:'none',
                 gap: ui.uiSpacing,
+                transition: 'all .2s',
             }}
         >
             {children}
