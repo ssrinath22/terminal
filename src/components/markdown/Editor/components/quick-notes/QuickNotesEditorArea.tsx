@@ -69,12 +69,13 @@ const QuickNotesEditorArea: React.FC<QuickNotesEditorAreaProps> = ({ src, setSrc
                 textAlign: 'left',
                 overflowY: 'auto',
                 overflowX:'hidden',
-                backgroundColor: background.mainColor,
+                backgroundColor: background.editorColor,
                 color: font.contentColor,
                 display: 'flex',
                 alignItems:'start',
                 flexDirection: 'column',
                 gap: ui.uiSpacing,
+                padding: '20px',
             }}
         >
             <QuickNotesTitle 

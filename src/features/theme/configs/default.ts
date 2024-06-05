@@ -7,8 +7,8 @@ export const constants: Constants = {
     fontSizeSmall: 12,
     fontSizeMed: 14,
     fontSizeLarge: 22,
-    fontWeightLight: 300,
-    fontWeightMed: 400,
+    fontWeightLight: 400,
+    fontWeightMed: 500,
     fontWeightHeavy: 700,
     roundnessLight: 3,
     roundnessMed: 5,
@@ -16,25 +16,26 @@ export const constants: Constants = {
 }
 
 export const defaultBackgroundState: BackgroundState = {
-    mainColor: '#FFFFFF',
+    mainColor: '#fefefe',
     accentColor: '#000000',
-    accentColor2: '#538cff',
+    accentColor2: '#3778fb',
     accentColor3: '#a2c5fe',
     iconColor: '#B4CCB9',
     hoverColor: '#e1e1e1',
-    headerColor: '#ffffff',
-    editorColor: '#FFFFFF',
+    headerColor: '#fefefe',
+    editorColor: '#fefefe',
 }
 
 export const defaultFontState: FontState = {
     // editorFont: '"Fira code", "Fira Mono", monospace',
     editorFont: "Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol",
+    editorFontColor: '#484848',
     editorFontSize: constants.fontSizeLarge,
     contentFontSize: constants.fontSizeSmall,
-    contentColor: '#444444',
+    contentColor: '#676767',
     contentFont: 'Roboto, sans-serif',
     contentFontWeight: constants.fontWeightLight,
-    headerFontWeight: constants.fontWeightHeavy,
+    headerFontWeight: constants.fontWeightMed,
     responseFontWeight: constants.fontWeightHeavy,
 }
 

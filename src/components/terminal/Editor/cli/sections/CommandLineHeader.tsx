@@ -13,7 +13,7 @@ type CommandLineHeaderProps = {
 const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory, setCurrentDirectory, currentBranch, setCurrentBranch }) => {
     /** global states */
     const { background, font } = useSelector((state: RootState) => state.theme)
-    const user = useSelector((state: RootState) => state.user)
+    const {userInfo} = useSelector((state: RootState) => state.user)
 
     /** user id states */
     const [userIdMode, setUserIdMode] = useState<'username' | 'email'>('username')
@@ -98,7 +98,7 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
                     fontWeight: font.headerFontWeight,
                 }}
             >
-                <span>{userIdMode === 'username' ? user.username : user.email}</span>
+                <span>{userIdMode === 'username' ? userInfo.username : userInfo.email}</span>
             </div>
 
             {/** delimiter */}
@@ -108,7 +108,7 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
                     padding: generalPadding,
                 }}
             >
-                <span>{user.cli_delimiter && `${user.cli_delimiter}`}</span>
+                <span>{userInfo.cli_delimiter && `${userInfo.cli_delimiter}`}</span>
             </div>
 
             {/** user dir section */}
@@ -138,7 +138,7 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
                     padding: generalPadding,
                 }}
             >
-                <span>{user.cli_delimiter && `${user.cli_delimiter}`}</span>
+                <span>{userInfo.cli_delimiter && `${userInfo.cli_delimiter}`}</span>
             </div>
 
             {/** user dir section */}
@@ -164,7 +164,7 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
                     padding: generalPadding,
                 }}
             >
-                {user.cli_ending && `${user.cli_ending}`}
+                {userInfo.cli_ending && `${userInfo.cli_ending}`}
             </div>
 
         </div>

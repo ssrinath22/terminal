@@ -41,6 +41,7 @@ export interface Constants {
 export interface FontState {
     editorFont: string
     editorFontSize: number
+    editorFontColor: string
     contentColor: string
     contentFont: string
     contentFontSize: number

@@ -73,7 +73,7 @@ const SettingsArea: React.FC<SettingsAreaProps> = ({ name, activeSection }) => {
     const dispatch = useDispatch()
     const { background, font, ui, icon, mode } = useSelector((state: RootState) => state.theme)
     const {accessibility} = useSelector((state: RootState) => state.settings)
-    const { username } = useSelector((state: RootState) => state.user)
+    const { userInfo } = useSelector((state: RootState) => state.user)
     const isActive = (`section-${name}` === activeSection)
 
     return (

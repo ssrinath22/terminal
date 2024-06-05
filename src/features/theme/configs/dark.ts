@@ -31,6 +31,7 @@ export const darkModeBackground: BackgroundState = {
 
 export const darkModeFont: FontState = {
     editorFont: '"Fira code", "Fira Mono", monospace',
+    editorFontColor: '#757575',
     editorFontSize: constants.fontSizeMed,
     contentColor: darkModeBackground.accentColor,
     contentFont: 'Roboto, sans-serif',

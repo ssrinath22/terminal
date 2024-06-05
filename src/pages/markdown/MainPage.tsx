@@ -45,11 +45,11 @@ const MainPage: React.FC<MainPageProps> = () => {
                     setActiveSection={setActiveSection}
                 />
                 <EditorArea
-                    name='editor'
+                    name='Editor'
                     activeSection={activeSection}
                 />
                 <SettingsArea
-                    name="settings"
+                    name="Settings"
                     activeSection={activeSection}
                 />
             </div>

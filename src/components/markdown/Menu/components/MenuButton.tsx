@@ -8,12 +8,10 @@ type MenuButtonProps = {
     setActiveSection: (section: string) => void
     targetSection: string
     children: React.ReactNode
-    desc?: boolean
-    version?: number
-    switching?: boolean
+    desc?: string
 }
 
-const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSection, targetSection, children, desc = true, version = 1, switching = true }) => {
+const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSection, targetSection, children, desc=id}) => {
     const { background, font, ui, icon } = useSelector((state: RootState) => state.theme)
     const { accessibility } = useSelector((state: RootState) => state.settings)
     const [hovered, setHovered] = useState<boolean>(false)
@@ -33,7 +31,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
     }
 
     const handleClick = () => {
-        switching && setActiveSection(targetSection)
+        setActiveSection(targetSection)
     }
 
     return (
@@ -85,7 +83,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
                         alignItems: 'center',
                     }}
                 >
-                    {id}
+                    {desc}
                 </div>
             }
         </div>

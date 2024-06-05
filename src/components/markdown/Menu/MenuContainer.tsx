@@ -18,13 +18,14 @@ type MenuContainerProps = {
 
 const MenuContainer: React.FC<MenuContainerProps> = ({ activeSection, setActiveSection }) => {
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
+    const {userInfo} = useSelector((state: RootState) => state.user)
     const [settingsActive, setSettingsActive] = useState<boolean>(false)
     const [sections, setSections] = useState<Section[]>([
-        {name: 'editor', icon: <TerminalIcon />},
+        {name: 'Editor', icon: <TerminalIcon />},
         // {name: 'environment', icon: <EnvironmentIcon />},
-        {name: 'git', icon: <TreeIcon />},
-        {name: 'docs', icon: <DocumentsIcon />},
-        {name: 'community', icon: <MarketIcon />}
+        {name: 'Git', icon: <TreeIcon />},
+        {name: 'Docs', icon: <DocumentsIcon />},
+        {name: 'Community', icon: <MarketIcon />}
     ])
 
     return (
@@ -86,21 +87,20 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ activeSection, setActiveS
                 }}
             >
                 <MenuButton
-                    id="account"
+                    id="Account"
                     activeSection={activeSection}
                     setActiveSection={setActiveSection}
-                    targetSection="section-account"
-                    version={2}
+                    targetSection="section-Account"
+                    desc={userInfo.name}
                 >
                     <ManIcon />
                 </MenuButton>
 
                 <MenuButton
-                    id="settings"
+                    id="Settings"
                     activeSection={activeSection}
                     setActiveSection={setActiveSection}
-                    targetSection="section-settings"
-                    version={2}
+                    targetSection="section-Settings"
                 >
                     <SettingsIcon />
                 </MenuButton>

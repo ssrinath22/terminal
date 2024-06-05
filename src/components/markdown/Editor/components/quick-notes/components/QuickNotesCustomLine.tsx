@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, forwardRef } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../../../../app/store'
+import LineOptionButton from './LineOptionButton'
 
 interface QuickNotesCustomLineProps {
     value: string
@@ -42,9 +43,14 @@ const QuickNotesCustomLine = forwardRef<HTMLTextAreaElement, QuickNotesCustomLin
                 padding: ui.uiSpacing,
                 borderRadius: ui.elementBorderRadius,
                 width: '100%',
-                boxSizing:'border-box',
+                boxSizing: 'border-box',
+                // padding: '10',
             }}
         >
+            <LineOptionButton
+                active={hovered}
+            />
+
             <textarea
                 ref={(el) => {
                     textareaRef.current = el
@@ -68,7 +74,7 @@ const QuickNotesCustomLine = forwardRef<HTMLTextAreaElement, QuickNotesCustomLin
                     fontFamily: font.editorFont,
                     fontSize: font.editorFontSize,
                     fontWeight: font.contentFontWeight,
-                    color: font.contentColor,
+                    color: font.editorFontColor,
                     border: 'none',
                     backgroundColor: 'transparent',
                     outline: 'none',
@@ -82,6 +88,7 @@ const QuickNotesCustomLine = forwardRef<HTMLTextAreaElement, QuickNotesCustomLin
                     height: 'auto',
                     lineHeight: '1.2',
                     padding: 0,
+                    boxSizing: 'border-box',
                 }}
                 rows={1}
             />

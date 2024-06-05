@@ -9,11 +9,14 @@ interface QuickNotesTitleProps {
 
 const QuickNotesTitle = forwardRef<HTMLTextAreaElement, QuickNotesTitleProps>(({ value, onChange }, ref) => {
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
+    const { userInfo } = useSelector((state: RootState) => state.user)
 
     const textareaRef = useRef<HTMLTextAreaElement | null>(null)
     const spanRef = useRef<HTMLSpanElement | null>(null)
     const [isFocused, setIsFocused] = useState(false)
     const [hovered, setHovered] = useState(false)
+
+    const placeholder = `Quick Notes by ${userInfo.name.split(' ')[0]}`
 
     const bgOpacity = isFocused ? '1F' : hovered ? '0F' : '00'
 
@@ -41,10 +44,10 @@ const QuickNotesTitle = forwardRef<HTMLTextAreaElement, QuickNotesTitleProps>(({
                 backgroundColor: `${background.accentColor2}${bgOpacity}`,
                 borderRadius: ui.elementBorderRadius,
                 overflow: 'hidden', // Hide overflow of the container
-                width: '100%',
+                minWidth: '100%',
                 maxWidth: '100%',
                 boxSizing:'border-box',
-                padding: '0px',
+                padding: ui.uiSpacing,
             }}
         >
             <textarea
@@ -59,7 +62,7 @@ const QuickNotesTitle = forwardRef<HTMLTextAreaElement, QuickNotesTitleProps>(({
                     }
                 }}
                 value={value}
-                placeholder={"Custom Title Here"}
+                placeholder={placeholder}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => {
                     setIsFocused(false)
@@ -72,18 +75,19 @@ const QuickNotesTitle = forwardRef<HTMLTextAreaElement, QuickNotesTitleProps>(({
                 style={{
                     fontFamily: font.editorFont,
                     fontSize: font.editorFontSize * 3,
-                    fontWeight: font.contentFontWeight,
-                    color: font.contentColor,
+                    fontWeight: font.headerFontWeight,
+                    color: font.editorFontColor,
                     backgroundColor: 'transparent',
                     outline: 'none',
                     resize: 'none',
                     overflowX: 'auto', // Enable horizontal scrolling
                     overflowY: 'hidden', // Disable vertical scrolling
                     whiteSpace: 'nowrap', // Ensure the text does not wrap
-                    display: 'block',
+                    display: 'flex',
+                    flexDirection: 'row',
                     minWidth: '100%',
                     maxWidth: '100%',
-                    padding: 10,
+                    padding: 0,
                     border: 'none', // Ensure no border
                     boxSizing:'border-box',
                 }}
@@ -94,7 +98,7 @@ const QuickNotesTitle = forwardRef<HTMLTextAreaElement, QuickNotesTitleProps>(({
                 style={{
                     position: 'absolute',
                     visibility: 'hidden',
-                    height: 'auto',
+                    height: font.contentFontSize,
                     whiteSpace: 'nowrap',
                     fontFamily: font.editorFont,
                     fontSize: font.editorFontSize * 3,
