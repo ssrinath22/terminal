@@ -20,15 +20,22 @@ export interface IconState {
     iconSize: number
     iconDescSize: number
     iconDescColor: string
+    iconDescWeight: number,
 }
 
-export interface SizeOptions {
+export interface Constants {
     iconSizeSmall: number
     iconSizeMed: number
     iconSizeLarge: number
     fontSizeSmall: number
     fontSizeMed: number
     fontSizeLarge: number
+    fontWeightLight: number
+    fontWeightMed: number
+    fontWeightHeavy: number
+    roundnessLight: number
+    roundnessMed: number
+    roundnessHeavy: number
 }
 
 export interface FontState {
@@ -44,6 +51,9 @@ export interface FontState {
 
 export interface ElementState {
     elementBorderRadius: number
+    menuButtonBorderRadius: number
+    tabBorderRadius: number
+    searchBarBorderRadius: number
     uiSpacing: number
     border: string
     boxShadow: string

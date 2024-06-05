@@ -49,11 +49,14 @@ const AddTab: React.FC<AddTabProps> = ({ addTab, openTabs }) => {
             style={{
                 position: 'relative',
                 cursor: 'default',
-                padding: '7px 7px',
+                padding: '4px 7px',
                 height: '100%',
                 backgroundColor: isHovered || getTabNameActivated ? background.hoverColor : background.mainColor,
-                borderRadius: ui.elementBorderRadius,
+                borderRadius: ui.tabBorderRadius,
                 userSelect: 'none',
+                display: 'flex',
+                justifyContent:'center',
+                alignItems: 'center',
             }}
         >
             <Add

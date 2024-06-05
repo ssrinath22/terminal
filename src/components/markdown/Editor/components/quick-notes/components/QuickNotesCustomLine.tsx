@@ -1,0 +1,92 @@
+import React, { useRef, useEffect, useState, forwardRef } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../../../../app/store'
+
+interface QuickNotesCustomLineProps {
+    value: string
+    onChange: (value: string) => void
+}
+
+const QuickNotesCustomLine = forwardRef<HTMLTextAreaElement, QuickNotesCustomLineProps>(({ value, onChange }, ref) => {
+    const { background, font, ui } = useSelector((state: RootState) => state.theme)
+
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null)
+    const [isFocused, setIsFocused] = useState(false)
+    const [hovered, setHovered] = useState(false)
+
+    const bgOpacity = isFocused ? '1F' : hovered ? '0F' : '00'
+
+    useEffect(() => {
+        if (textareaRef.current) {
+            updateHeight()
+        }
+    }, [value])
+
+    const updateHeight = () => {
+        if (textareaRef.current) {
+            const textarea = textareaRef.current
+            textarea.style.height = 'auto'
+            textarea.style.height = `${textarea.scrollHeight}px`
+        }
+    }
+
+    return (
+        <div
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: `${background.accentColor2}${bgOpacity}`,
+                padding: ui.uiSpacing,
+                borderRadius: ui.elementBorderRadius,
+                width: '100%',
+                boxSizing:'border-box',
+            }}
+        >
+            <textarea
+                ref={(el) => {
+                    textareaRef.current = el
+                    if (typeof ref === 'function') {
+                        ref(el)
+                    } else if (ref) {
+                        ref.current = el
+                    }
+                }}
+                value={value}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => {
+                    setIsFocused(false)
+                    setHovered(false)
+                }}
+                onChange={(e) => {
+                    onChange(e.currentTarget.value)
+                    updateHeight()
+                }}
+                style={{
+                    fontFamily: font.editorFont,
+                    fontSize: font.editorFontSize,
+                    fontWeight: font.contentFontWeight,
+                    color: font.contentColor,
+                    border: 'none',
+                    backgroundColor: 'transparent',
+                    outline: 'none',
+                    width: '100%',
+                    resize: 'none',
+                    overflowY: 'hidden',
+                    whiteSpace: 'pre-wrap',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 'auto',
+                    lineHeight: '1.2',
+                    padding: 0,
+                }}
+                rows={1}
+            />
+        </div>
+    )
+})
+
+export default QuickNotesCustomLine

@@ -49,10 +49,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
                     alignItems: 'center',
                     gap: ui.uiSpacing,
                     border,
-                    borderRadius: ui.elementBorderRadius,
-                    borderBottomLeftRadius: isFocused ? 0 : ui.elementBorderRadius,
-                    borderBottomRightRadius: isFocused ? 0 : ui.elementBorderRadius,
-                    padding: '10px',
+                    borderRadius: ui.searchBarBorderRadius,
+                    borderBottomLeftRadius: isFocused ? 0 : ui.searchBarBorderRadius,
+                    borderBottomRightRadius: isFocused ? 0 : ui.searchBarBorderRadius,
+                    padding: ui.uiSpacing,
                     width: isFocused ? '600px' : '300px',
                     height: '40px',
                     font: font.contentFont,
@@ -153,16 +153,17 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
                             maxHeight: '400px',
                             overflowY: 'auto',
                             flexGrow: 1,
-                            padding: '10px',
+                            padding: ui.uiSpacing,
                             backgroundColor: `${background.accentColor3}${bgOpacity}`,
                             backdropFilter: 'blur(10px)',
                             border,
-                            borderBottomLeftRadius: ui.elementBorderRadius,
-                            borderBottomRightRadius: ui.elementBorderRadius,
+                            borderBottomLeftRadius: ui.searchBarBorderRadius,
+                            borderBottomRightRadius: ui.searchBarBorderRadius,
                             borderTopLeftRadius: 0,
                             borderTopRightRadius: 0,
                             boxSizing: 'border-box',
                         }}>
+                            Hello World
 
                     </span>
                 </div>

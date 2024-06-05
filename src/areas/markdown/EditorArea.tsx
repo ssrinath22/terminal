@@ -17,7 +17,7 @@ type EditorArea = {
 
 const EditorArea: React.FC<EditorArea> = ({ name, activeSection}) => {
     const [focusedTab, setFocusedTab] = useState<string>('')
-    const [openTabs, setOpenTabs] = useState<TabInfo[]>([{tabName: 'hello world', tabType: 'latex'}])
+    const [openTabs, setOpenTabs] = useState<TabInfo[]>([])
 
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
 
@@ -46,7 +46,7 @@ const EditorArea: React.FC<EditorArea> = ({ name, activeSection}) => {
                 width: `100%`,
                 overflow:'hidden',
                 flexDirection: 'column',
-                padding: '5px 6px',
+                padding: ui.uiSpacing,
                 gap: ui.uiSpacing,
             }}
         >

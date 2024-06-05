@@ -54,7 +54,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ focusedTab, setFocusedTab
                         scrollbarWidth: 'none',
                         boxSizing: 'border-box',
                         flexGrow: 1,
-                        padding: '5px 5px',
+                        padding: ui.uiSpacing,
                     }}
                 >
                     {openTabs.map((v, i) => (

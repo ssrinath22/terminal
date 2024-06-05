@@ -36,7 +36,7 @@ const EnvironmentArea: React.FC<EnvironmentAreaProps> = ({ name, activeSection }
                     maxHeight: '100%',
                     width: `100%`,
                     flexDirection: 'column',
-                    padding: '5px 6px',
+                    padding: ui.uiSpacing,
                     gap: ui.uiSpacing,
                 }}
             >

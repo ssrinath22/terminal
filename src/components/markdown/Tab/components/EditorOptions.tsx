@@ -22,11 +22,11 @@ const EditorOptions: React.FC<EditorOptionsProps> = ({ onSelect }) => {
                 right: 0,
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
-                padding: '10px',
+                padding: ui.uiSpacing,
                 borderRadius: ui.elementBorderRadius,
                 backgroundColor: background.editorColor,
                 boxSizing: 'border-box',
-                gap: '10px',
+                gap: ui.uiSpacing,
                 boxShadow: `#00000077 0px 0px 5px`,
             }}
         >

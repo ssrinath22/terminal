@@ -25,7 +25,7 @@ const MenuArea: React.FC<MenuArea> = ({activeSection, setActiveSection}) => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'flex-start',
-                padding: '5px 5px',
+                padding: ui.uiSpacing,
             }}
         >
             {/** Inner Container */}

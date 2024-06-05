@@ -7,6 +7,7 @@ import { TabInfo } from '../../../areas/markdown/EditorArea'
 import { EditorType } from '../../../types/editor'
 
 import 'prismjs/components/prism-markdown'
+import { QuickNotesEditorArea } from './components/quick-notes'
 
 type EditorProps = {
     isActive: boolean
@@ -28,7 +29,7 @@ const Editor: React.FC<EditorProps> = ({ isActive, layer, editorType = 'markdown
                 width: '100%',
                 maxWidth: '100%',
                 display: isActive ? 'flex' : 'none',
-                justifyContent: 'start',
+                justifyContent: 'center',
                 flexDirection: 'row',
                 alignItems: 'start',
                 overflow: 'hidden',
@@ -57,7 +58,7 @@ const Editor: React.FC<EditorProps> = ({ isActive, layer, editorType = 'markdown
             {
                 (editorType == 'quick notes') && 
                 <>
-                    This editor type has not yet been implemented
+                    <QuickNotesEditorArea src={code} setSrc={setCode}/>
                 </>
             }
 

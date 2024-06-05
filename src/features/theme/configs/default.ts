@@ -1,12 +1,18 @@
-import type { BackgroundState, FontState, ElementState, IconState, SizeOptions } from '../../../types/themeSlice'
+import type { BackgroundState, FontState, ElementState, IconState, Constants } from '../../../types/themeSlice'
 
-export const sizeOptions: SizeOptions = {
-    iconSizeSmall: 16,
-    iconSizeMed: 22,
+export const constants: Constants = {
+    iconSizeSmall: 14,
+    iconSizeMed: 23,
     iconSizeLarge: 32,
     fontSizeSmall: 12,
     fontSizeMed: 14,
-    fontSizeLarge: 16,
+    fontSizeLarge: 22,
+    fontWeightLight: 300,
+    fontWeightMed: 400,
+    fontWeightHeavy: 700,
+    roundnessLight: 3,
+    roundnessMed: 5,
+    roundnessHeavy: 10,
 }
 
 export const defaultBackgroundState: BackgroundState = {
@@ -21,18 +27,22 @@ export const defaultBackgroundState: BackgroundState = {
 }
 
 export const defaultFontState: FontState = {
-    editorFont: '"Fira code", "Fira Mono", monospace',
-    editorFontSize: sizeOptions.fontSizeSmall,
-    contentFontSize: sizeOptions.fontSizeSmall,
-    contentColor: '#515151',
+    // editorFont: '"Fira code", "Fira Mono", monospace',
+    editorFont: "Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol",
+    editorFontSize: constants.fontSizeLarge,
+    contentFontSize: constants.fontSizeSmall,
+    contentColor: '#444444',
     contentFont: 'Roboto, sans-serif',
-    contentFontWeight: 300,
-    headerFontWeight: 700,
-    responseFontWeight: 800,
+    contentFontWeight: constants.fontWeightLight,
+    headerFontWeight: constants.fontWeightHeavy,
+    responseFontWeight: constants.fontWeightHeavy,
 }
 
 export const defaultUIState: ElementState = {
-    elementBorderRadius: 3,
+    elementBorderRadius: constants.roundnessLight,
+    menuButtonBorderRadius: constants.roundnessLight,
+    tabBorderRadius: constants.roundnessLight,
+    searchBarBorderRadius: constants.roundnessMed,
     uiSpacing: 5,
     border: `1px solid ${defaultBackgroundState.hoverColor}`,
     boxShadow: ``,
@@ -46,9 +56,10 @@ export const defaultIconState: IconState = {
     iconColorTertiary: '#fffff2',
     iconColorQuaternary: '#f298ac',
     iconColorQuinary: '#86f5ba',
-    iconSize: sizeOptions.iconSizeMed,
+    iconSize: constants.iconSizeSmall,
     iconDescSize: defaultFontState.contentFontSize,
     iconDescColor: defaultFontState.contentColor,
+    iconDescWeight: defaultFontState.contentFontWeight,
 }
 
 export const initialState = {

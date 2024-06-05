@@ -29,7 +29,7 @@ const EditorContainer: React.FC<EditorContainerProps> = ({ tabs, focusedTab, lay
                 scrollbarWidth:'thin',
                 borderRadius: ui.elementBorderRadius,
                 boxSizing: 'border-box',
-                padding: '5px 5px',
+                padding: ui.uiSpacing,
                 backgroundColor: background.editorColor ? background.editorColor : background.mainColor,
                 border: ui.border ,
             }}
