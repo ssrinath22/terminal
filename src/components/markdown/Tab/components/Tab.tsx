@@ -19,6 +19,7 @@ export const EditorTypeIcon: React.FC<{type:EditorType, isSmall?: boolean}> = ({
 }
 
 type TabProps = {
+    id: string
     currTab: TabInfo
     focusedTab: string
     setFocusedTab: (arg0: string) => void
@@ -26,7 +27,7 @@ type TabProps = {
     mandatory?: boolean
 }
 
-const Tab: React.FC<TabProps> = ({ currTab, focusedTab, setFocusedTab, closeTab, mandatory = false }) => {
+const Tab: React.FC<TabProps> = ({ id, currTab, focusedTab, setFocusedTab, closeTab, mandatory = false }) => {
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
     const [isHovered, setIsHovered] = useState<boolean>(false)
     const [closeIsHovered, setCloseIsHovered] = useState<boolean>(false)
@@ -35,6 +36,7 @@ const Tab: React.FC<TabProps> = ({ currTab, focusedTab, setFocusedTab, closeTab,
 
     return (
         <div
+            id={id}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => {
@@ -49,7 +51,7 @@ const Tab: React.FC<TabProps> = ({ currTab, focusedTab, setFocusedTab, closeTab,
                 fontSize: font.contentFontSize,
                 fontWeight: font.contentFontWeight,
                 cursor: 'default',
-                backgroundColor: isActive ? ui.tabSelectColor : isHovered ? background.hoverColor : 'transparent',
+                backgroundColor: isActive || isHovered ? background.tabColor : 'transparent',
                 height: '100%',
                 width: '100px',
                 minWidth: '75px',
@@ -99,7 +101,7 @@ const Tab: React.FC<TabProps> = ({ currTab, focusedTab, setFocusedTab, closeTab,
                             display: isActive ? 'flex' : 'none',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            backgroundColor: closeIsHovered ? background.hoverColor : ui.tabSelectColor,
+                            backgroundColor: closeIsHovered ? background.hoverColor : background.tabColor,
                             backdropFilter: 'blur(10px)',
                         }}
                     >

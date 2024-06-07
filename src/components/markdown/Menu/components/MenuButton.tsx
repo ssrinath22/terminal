@@ -44,12 +44,14 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
                 cursor: 'default',
                 display: 'flex',
                 flexDirection: 'row',
-                justifyContent: 'center',
+                justifyContent: 'space-between',
                 alignItems: 'center',
                 width,
                 height,
+                minWidth: width,
+                minHeight: height,
                 boxSizing: 'border-box',
-                padding: '5px 10px',
+                padding: '5px 0px',
                 borderRadius: ui.menuButtonBorderRadius,
                 backgroundColor,
                 fontFamily: font.contentFont,
@@ -58,7 +60,6 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
                 color: icon.iconDescColor,
                 userSelect: 'none',
                 WebkitUserSelect: 'none',
-                gap: ui.uiSpacing,
                 transition: 'all .2s',
             }}
         >
@@ -69,6 +70,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    // border: `1px solid black`,
                 }}
             >
                 {children}
@@ -81,6 +83,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ id, activeSection, setActiveSec
                         height: '100%',
                         display: 'flex',
                         alignItems: 'center',
+                        // border: `1px solid black`,
                     }}
                 >
                     {desc}

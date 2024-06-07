@@ -30,7 +30,6 @@ const EditorContainer: React.FC<EditorContainerProps> = ({ tabs, focusedTab, lay
                 borderRadius: ui.elementBorderRadius,
                 boxSizing: 'border-box',
                 padding: '5px 5px',
-                backgroundColor: background.editorColor ? background.editorColor : background.mainColor,
             }}
         >
             {/* <TabEditorSpacing /> */}

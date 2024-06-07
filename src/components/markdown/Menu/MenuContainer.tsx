@@ -19,7 +19,7 @@ type MenuContainerProps = {
 const MenuContainer: React.FC<MenuContainerProps> = ({ activeSection, setActiveSection }) => {
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
     const {userInfo} = useSelector((state: RootState) => state.user)
-    const [settingsActive, setSettingsActive] = useState<boolean>(false)
+    const [menuCollapsed, setMenuCollapsed] = useState<boolean>(false)
     const [sections, setSections] = useState<Section[]>([
         {name: 'Editor', icon: <TerminalIcon />},
         // {name: 'environment', icon: <EnvironmentIcon />},
@@ -32,15 +32,18 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ activeSection, setActiveS
         <div
             id="container-menu"
             style={{
-                position: 'relative',
-                width: '100%',
+                position: menuCollapsed ? 'absolute' : 'relative',
+                top: menuCollapsed ? ui.uiSpacing : 'auto',
+                left: menuCollapsed ? ui.uiSpacing : 'auto',
+                width: menuCollapsed ? 'auto' : '100%',
                 height: '100%',
                 borderRadius: ui.elementBorderRadius,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent:'space-between',
-                gap: 5,
+                backgroundColor: background.menuColor,
+                boxShadow: menuCollapsed ? ui.boxShadow : '',
             }}
         >
             < div
@@ -52,7 +55,6 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ activeSection, setActiveS
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: 5,
                     overflow:'auto',
                     scrollbarWidth:'none',
                 }}
@@ -83,7 +85,7 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ activeSection, setActiveS
                     flexDirection: 'column',
                     alignItems: 'center',
                     gap: 5,
-                    backgroundColor: background.mainColor,
+                    backgroundColor: background.menuColor,
                 }}
             >
                 <MenuButton

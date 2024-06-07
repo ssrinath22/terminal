@@ -33,7 +33,6 @@ const Editor: React.FC<EditorProps> = ({ isActive, layer, editorType = 'markdown
                 flexDirection: 'row',
                 alignItems: 'start',
                 overflow: 'hidden',
-                backgroundColor: background.editorColor,
                 color: font.contentColor,
                 gap: ui.uiSpacing,
                 boxSizing: 'border-box',

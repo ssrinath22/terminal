@@ -82,7 +82,7 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ activeSection, setActiveS
                     flexDirection: 'column',
                     alignItems: 'center',
                     gap: 5,
-                    backgroundColor: background.mainColor,
+                    backgroundColor: background.menuColor,
                 }}
             >
                 <MenuButton

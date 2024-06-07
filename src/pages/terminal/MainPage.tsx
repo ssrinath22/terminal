@@ -26,7 +26,7 @@ const MainPage: React.FC<MainPageProps> = () => {
                 flexDirection: 'column',
                 height: '100vh',
                 width: '100vw',
-                backgroundColor: background.mainColor,
+                backgroundColor: background.appColor,
                 boxSizing: 'border-box',
             }}
         >

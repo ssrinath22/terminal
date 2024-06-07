@@ -37,8 +37,7 @@ const EditorTypeOptionButton: React.FC<EditorTypeOptionButtonProps> = ({ optionN
                 gap: ui.uiSpacing,
                 // border: ui.border,
                 borderRadius: ui.elementBorderRadius,
-                boxShadow: isHovered ? `${background.accentColor}00 0px 0px 5px` : '',
-                backgroundColor: isHovered ? background.hoverColor : '',
+                backgroundColor: isHovered ? background.tabColor : '',
                 transition: 'box-shadow .2s, background-color .2s linear',
                 gridColumn: size === 'full' ? '1 / -1' : 'auto', // Full width if size is 'full'
             }}

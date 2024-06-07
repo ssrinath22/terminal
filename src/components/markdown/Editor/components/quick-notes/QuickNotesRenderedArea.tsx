@@ -21,8 +21,8 @@ const MarkdownRenderedArea:React.FC<MarkdownRenderedAreaProps> = ({markdownSrc})
                     borderRadius: ui.elementBorderRadius,
                     textAlign: 'left',
                     overflowY: 'auto',
-                    backgroundColor: background.mainColor,
-                    color: background.accentColor,
+                    backgroundColor: background.renderedColor,
+                    color: background.renderedColor,
                 }}>
                 <ReactMarkdown
                     children={markdownSrc}

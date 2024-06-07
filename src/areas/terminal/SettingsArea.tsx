@@ -28,6 +28,7 @@ const OnOffSwitch: React.FC<OnOffSwitchProps> = ({ action, on, onDesc, offDesc }
                 display: 'flex',
                 flexDirection: 'row',
                 gap: ui.uiSpacing,
+                border: ui.border,
             }}
         >
             <span style={textStyle}>{onDesc}</span>
@@ -40,21 +41,22 @@ const OnOffSwitch: React.FC<OnOffSwitchProps> = ({ action, on, onDesc, offDesc }
                     alignItems: 'center',
                     flexDirection: 'row',
                     boxSizing: 'border-box',
-                    // border: `1px solid ${background.accentColor2}`,
-                    backgroundColor: `${background.accentColor2}55`,
+                    backgroundColor: `${background.searchBarColor}55`,
+                    border: ui.border,
                     borderRadius: size,
                 }}
             >
                 <div
                     onClick={action}
                     style={{
+                        zIndex: 2,
                         position: 'absolute',
                         left: on ? 0 : size,
                         width: size,
                         height: size,
-                        backgroundColor: background.accentColor2,
-                        // border: `1px solid ${background.accentColor2}`,
+                        backgroundColor: background.searchBarColor,
                         borderRadius: size,
+                        border: ui.border,
                         transition: 'left .2s',
                     }}
                 />
@@ -91,6 +93,7 @@ const SettingsArea: React.FC<SettingsAreaProps> = ({ name, activeSection }) => {
                 fontSize: icon.iconDescSize,
                 fontWeight: font.contentFontWeight,
                 color: font.contentColor,
+                backgroundColor: 'red',
             }}
         >
             <span> Theme Mode</span>

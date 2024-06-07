@@ -61,37 +61,49 @@ const QuickNotesEditorArea: React.FC<QuickNotesEditorAreaProps> = ({ src, setSrc
                 position: 'relative',
                 height: '100%',
                 maxHeight: '100%',
-                width: '65%',
+                width: '70%',
                 fontFamily: font.editorFont,
                 fontSize: font.editorFontSize,
                 boxSizing: 'border-box',
                 borderRadius: ui.elementBorderRadius,
                 textAlign: 'left',
-                overflowY: 'auto',
-                overflowX:'hidden',
+                overflowY: 'hidden',
+                overflowX: 'hidden',
                 backgroundColor: background.editorColor,
                 color: font.contentColor,
                 display: 'flex',
-                alignItems:'start',
+                alignItems: 'start',
                 flexDirection: 'column',
                 gap: ui.uiSpacing,
-                padding: '20px',
+                padding: '25px',
             }}
         >
-            <QuickNotesTitle 
+            <QuickNotesTitle
                 value={title}
                 onChange={setTitle}
             />
 
-            {lines.map((line, index) => (
-                <div key={index} onKeyDown={(event) => handleKeyDown(event, index)} style={{width: '100%'}}>
-                    <QuickNotesCustomLine
-                        value={line}
-                        onChange={(value) => handleLineChange(value, index)}
-                        ref={(el) => (lineRefs.current[index] = el as HTMLTextAreaElement)}
-                    />
-                </div>
-            ))}
+            <div
+                style={{
+                    display: 'block',
+                    width: '100%',
+                    maxHeight: '90%',
+                    boxSizing: 'border-box',
+                    overflowY: 'auto',
+                }}
+            >
+                {lines.map((line, index) => (
+                    <div key={index} onKeyDown={(event) => handleKeyDown(event, index)} style={{ width: '100%' }}>
+                        <QuickNotesCustomLine
+                            value={line}
+                            onChange={(value) => handleLineChange(value, index)}
+                            lineNum={index}
+                            ref={(el) => (lineRefs.current[index] = el as HTMLTextAreaElement)}
+                        />
+                    </div>
+                ))}
+            </div>
+
         </div>
     )
 }

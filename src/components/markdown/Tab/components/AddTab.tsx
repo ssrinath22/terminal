@@ -20,6 +20,8 @@ const AddTab: React.FC<AddTabProps> = ({ addTab, openTabs }) => {
     const [error, setError] = useState<boolean>(false)
     const divRef = useRef<HTMLDivElement>(null)
 
+    const [transform, setTransform] = useState<String>('')
+
     const handleNewTabOpened = (tabType: EditorType) => {
         if (error) setError(false)
         const tabName = `newtab ${openTabs.length + 1}`
@@ -43,6 +45,18 @@ const AddTab: React.FC<AddTabProps> = ({ addTab, openTabs }) => {
         }
     }, [divRef])
 
+    useEffect(() => {
+        const rightMostTabRight = document.getElementById(`tab-${openTabs.length - 1}`)?.getBoundingClientRect().right
+
+        const addTabRight = divRef.current?.getBoundingClientRect().right
+
+        if(rightMostTabRight && addTabRight) {
+            const moveRight = rightMostTabRight - addTabRight
+            divRef.current.style.transform = (`translateX(${moveRight})`)
+        }
+        
+    }, [openTabs])
+
     return (
         <div
             ref={divRef}
@@ -51,7 +65,7 @@ const AddTab: React.FC<AddTabProps> = ({ addTab, openTabs }) => {
                 cursor: 'default',
                 padding: '4px 7px',
                 height: '100%',
-                backgroundColor: isHovered || getTabNameActivated ? background.hoverColor : background.mainColor,
+                backgroundColor: isHovered ? background.tabColor : 'transparent',
                 borderRadius: ui.tabBorderRadius,
                 userSelect: 'none',
                 display: 'flex',

@@ -36,7 +36,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ focusedTab, setFocusedTab
                 position: 'relative', // Ensures AddTab is positioned relative to this container
                 boxSizing: 'border-box',
                 borderRadius: ui.elementBorderRadius,
-                backgroundColor: background.mainColor,
+                backgroundColor: background.tabAreaColor,
             }}
         >
                 <div

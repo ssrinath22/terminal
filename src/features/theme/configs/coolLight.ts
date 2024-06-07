@@ -10,16 +10,17 @@ export const constants: Constants = {
     fontWeightLight: 400,
     fontWeightMed: 500,
     fontWeightHeavy: 700,
-    roundnessLight: 0,
+    roundnessLight: 3,
     roundnessMed: 5,
     roundnessHeavy: 20,
-    fontColorMain: '#676767',
+    fontColorMain: '#3e3e3e',
     fontColorSecondary: '#484848',
-    mainColor: '#fefefe',
-    accentColor: '#eff1fb',
-    accentColor2: '#4e87f9',
-    accentColor3: '#0c0043',
-    accentColor4: '#c2ffce',
+    mainColor: '#f4f9fd',
+    accentColor: '#fceeff',
+    accentColor2: '#460087',
+    accentColor3: '#fcfdff',
+    accentColor4: '#efff73',
+    accentColor5: '#f7f7f7',
 }
 
 export const defaultBackgroundState: BackgroundState = {
@@ -28,17 +29,16 @@ export const defaultBackgroundState: BackgroundState = {
     menuColor: constants.mainColor,
     searchBarColor: constants.accentColor,
     headerColor: constants.mainColor,
-    editorColor: constants.mainColor,
-    editorContainerColor: constants.mainColor,
-    renderedColor: constants.mainColor,
+    editorColor: constants.accentColor3,
+    editorContainerColor: constants.accentColor3,
+    renderedColor: constants.accentColor3,
     lineColor: constants.accentColor4,
     tabColor: constants.accentColor,
-    tabAreaColor: constants.mainColor,
+    tabAreaColor: constants.accentColor3,
     settingsColor: constants.mainColor,
 }
 
 export const defaultFontState: FontState = {
-    // editorFont: '"Fira code", "Fira Mono", monospace',
     editorFont: "Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol",
     editorFontColor: constants.fontColorSecondary,
     editorFontSize: constants.fontSizeMed,
@@ -56,13 +56,14 @@ export const defaultUIState: ElementState = {
     tabBorderRadius: constants.roundnessLight,
     searchBarBorderRadius: constants.roundnessHeavy,
     uiSpacing: 5,
-    border: `1px solid ${constants.accentColor3}`,
-    boxShadow: ``,
+    border: `1px solid ${constants.accentColor2}`,
+    // border: '',
+    boxShadow: `${constants.accentColor2}44 0px 0px 2px`,
     tabSelectColor: defaultBackgroundState.hoverColor,
 }
 
 export const defaultIconState: IconState = {
-    iconOutlineColor: '#394240',
+    iconOutlineColor: '#003228',
     iconColorMain: '#99cefa',
     iconColorSecondary: '#e9e9e9',
     iconColorTertiary: '#fffff2',
@@ -74,10 +75,10 @@ export const defaultIconState: IconState = {
     iconDescWeight: defaultFontState.contentFontWeight,
 }
 
-export const initialState = {
+export const coolLightState = {
     background: defaultBackgroundState,
     font: defaultFontState,
     ui: defaultUIState,
     icon: defaultIconState,
-    mode: 'default',
+    mode: 'coolLight',
 }

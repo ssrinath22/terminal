@@ -10,11 +10,11 @@ type MainPageProps = {}
 
 const MainPage: React.FC<MainPageProps> = () => {
     const { background, ui } = useSelector((state: RootState) => state.theme)
-    const [activeSection, setActiveSection] = useState('')
+    const [activeSection, setActiveSection] = useState('section-Editor')
     /** set a default active section if not alr set */
     useEffect(() => {
         if (activeSection === '') {
-            setActiveSection('section-editor')
+            setActiveSection('section-Editor')
         }
     }, [activeSection])
 
@@ -25,8 +25,9 @@ const MainPage: React.FC<MainPageProps> = () => {
                 flexDirection: 'column',
                 height: '100vh',
                 width: '100vw',
-                backgroundColor: background.mainColor,
+                backgroundColor: background.appColor,
                 boxSizing: 'border-box',
+                overflow:'hidden'
             }}
         >
             <HeaderArea />
@@ -35,7 +36,6 @@ const MainPage: React.FC<MainPageProps> = () => {
                     display: 'flex',
                     flexDirection: 'row',
                     flex: 1,
-                    gap: ui.uiSpacing,
                     boxSizing: 'border-box',
                     overflow: 'hidden'
                 }}

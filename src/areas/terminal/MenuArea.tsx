@@ -25,7 +25,7 @@ const MenuArea: React.FC<MenuArea> = ({activeSection, setActiveSection}) => {
             style={{
                 position:'relative',
                 zIndex: 2,
-                backgroundColor: `${background.mainColor}`,
+                backgroundColor: `${background.menuColor}`,
                 minWidth: width,
                 display: 'flex',
                 flexDirection: 'column',

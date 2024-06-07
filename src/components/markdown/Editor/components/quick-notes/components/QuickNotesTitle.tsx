@@ -18,7 +18,7 @@ const QuickNotesTitle = forwardRef<HTMLTextAreaElement, QuickNotesTitleProps>(({
 
     const placeholder = `Quick Notes by ${userInfo.name.split(' ')[0]}`
 
-    const bgOpacity = isFocused ? '1F' : hovered ? '0F' : '00'
+    const bgOpacity = isFocused ? '55' : hovered ? '44' : '00'
 
     useEffect(() => {
         updateWidth()
@@ -41,7 +41,7 @@ const QuickNotesTitle = forwardRef<HTMLTextAreaElement, QuickNotesTitleProps>(({
                 display: 'inline-block',
                 justifyContent: 'start',
                 alignItems: 'center',
-                backgroundColor: `${background.accentColor2}${bgOpacity}`,
+                backgroundColor: `${background.lineColor}${bgOpacity}`,
                 borderRadius: ui.elementBorderRadius,
                 overflow: 'hidden', // Hide overflow of the container
                 minWidth: '100%',

@@ -39,7 +39,7 @@ const OnOffSwitch: React.FC<OnOffSwitchProps> = ({ action, on, onDesc, offDesc }
                     alignItems: 'center',
                     flexDirection: 'row',
                     boxSizing: 'border-box',
-                    backgroundColor: `${background.accentColor2}55`,
+                    backgroundColor: `${background.tabColor}55`,
                     borderRadius: size,
                 }}
             >
@@ -50,7 +50,7 @@ const OnOffSwitch: React.FC<OnOffSwitchProps> = ({ action, on, onDesc, offDesc }
                         left: on ? 0 : size,
                         width: size,
                         height: size,
-                        backgroundColor: background.accentColor2,
+                        backgroundColor: background.tabColor,
                         borderRadius: size,
                         transition: 'left .2s',
                     }}

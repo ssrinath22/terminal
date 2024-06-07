@@ -35,7 +35,7 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
     /** header style */
     const headerSpacing = 0
     const headerBackgroundOpacity = '00' //TODO: this background is hidden for now
-    const headerBackgroundColor = `${background.accentColor}${headerBackgroundOpacity}`
+    const headerBackgroundColor = `${background.hoverColor}${headerBackgroundOpacity}`
     // const headerBackgroundColor = 'rgba(255,0,0,.1)'
 
     const headerdBorderRadius = generalBorderRadius
@@ -147,7 +147,7 @@ const CommandLineHeader: React.FC<CommandLineHeaderProps> = ({ currentDirectory,
                 onMouseLeave={() => setGitHovered(false)}
                 style={{
                     fontWeight: font.headerFontWeight*2,
-                    color: background.accentColor2,
+                    color: font.editorFontColor,
                     padding: gitPadding,
                     cursor: 'pointer',
                     borderRadius: gitBorderRadius,

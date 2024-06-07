@@ -38,8 +38,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ focusedTab, setFocusedTab
                 maxWidth: '100%',
                 position: 'relative',
                 boxSizing: 'border-box',
-                borderRadius: ui.elementBorderRadius,
-                backgroundColor: background.mainColor,
+                backgroundColor: background.tabAreaColor,
             }}
         >
                 <div
@@ -60,6 +59,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ focusedTab, setFocusedTab
                     {openTabs.map((v, i) => (
                         <Tab
                             key={`tab-${i}`}
+                            id={`tab=${i}`}
                             currTab={v}
                             focusedTab={focusedTab}
                             setFocusedTab={setFocusedTab}

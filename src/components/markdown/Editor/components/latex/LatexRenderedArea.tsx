@@ -1,40 +1,3 @@
-// import React from 'react'
-// import { useSelector } from 'react-redux'
-// import { RootState } from '../../../../../app/store'
-// import { BlockMath } from 'react-katex'
-// import 'katex/dist/katex.min.css'
-
-// type LatexRenderedAreaProps = {
-//   latexSrc: string
-// }
-
-// const LatexRenderedArea: React.FC<LatexRenderedAreaProps> = ({ latexSrc }) => {
-//   const { background, font, ui } = useSelector((state: RootState) => state.theme)
-
-//   return (
-//     <div
-//       style={{
-//         padding: ui.uiSpacing,
-//         height: '100%',
-//         maxHeight: '100%',
-//         width: '100%',
-//         fontFamily: font.editorFont,
-//         fontSize: font.editorFontSize,
-//         boxSizing: 'border-box',
-//         borderRadius: ui.elementBorderRadius,
-//         textAlign: 'left',
-//         overflowY: 'auto',
-//         backgroundColor: background.mainColor,
-//         color: background.accentColor,
-//       }}
-//     >
-//       <BlockMath math={latexSrc} />
-//     </div>
-//   )
-// }
-
-// export default LatexRenderedArea
-
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../../../app/store'
@@ -60,8 +23,8 @@ const LatexRenderedArea: React.FC<LatexRenderedAreaProps> = ({ latexSrc }) => {
         borderRadius: ui.elementBorderRadius,
         textAlign: 'left',
         overflowY: 'auto',
-        backgroundColor: background.mainColor,
-        color: background.accentColor,
+        backgroundColor: background.renderedColor,
+        color: background.renderedColor,
         // border: ui.border,
       }}
     >

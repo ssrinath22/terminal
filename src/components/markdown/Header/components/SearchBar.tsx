@@ -12,7 +12,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
     const divRef = useRef<HTMLDivElement>(null)
 
     const bgOpacity = isHovered || isFocused ? '33' : '22'
-    const border = isFocused ? `1px solid ${'#AAD7D9'}77` : `1px solid ${background.hoverColor}`
+    const border = isFocused ? ui.border : ui.border
+
+    const searchShortcut = '⌘K'
+    const searchPlaceholder = 'Search through notes, docs, etc...'
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -31,8 +34,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
     return (
         <div
             style={{
-                backgroundColor: background.mainColor,
-                borderRadius: ui.elementBorderRadius,
+                borderRadius: ui.searchBarBorderRadius,
             }}
         >
             <div
@@ -49,18 +51,18 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
                     alignItems: 'center',
                     gap: ui.uiSpacing,
                     border,
-                    borderRadius: ui.searchBarBorderRadius,
+                    borderRadius: isFocused ? ui.elementBorderRadius : ui.searchBarBorderRadius,
                     borderBottomLeftRadius: isFocused ? 0 : ui.searchBarBorderRadius,
                     borderBottomRightRadius: isFocused ? 0 : ui.searchBarBorderRadius,
                     padding: ui.uiSpacing,
-                    width: isFocused ? '600px' : '300px',
+                    width: isFocused ? '500px' : '275px',
                     height: '40px',
                     font: font.contentFont,
                     fontSize: font.contentFontSize,
                     fontFamily: font.contentFont,
                     fontWeight: font.contentFontWeight,
                     color: font.contentColor,
-                    backgroundColor: isFocused ? `${background.accentColor3}44` : `${background.accentColor3}${bgOpacity}`,
+                    backgroundColor: background.searchBarColor,
                     userSelect: 'none',
                     boxSizing: 'border-box',
                 }}
@@ -70,7 +72,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
                         display: isFocused ? 'none' : 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        gap: ui.uiSpacing,
+                        gap: ui.uiSpacing*2,
+                        width: '100%',
                     }}
                 >
                     <span
@@ -78,18 +81,23 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            gap: ui.uiSpacing,
+                            fontSize: font.editorFontSize,
+                            fontWeight: font.headerFontWeight,
+                            padding: '2px',
                             borderRadius: ui.elementBorderRadius,
-                            backgroundColor: background.accentColor2,
-                            padding: '5px',
-                            color: background.mainColor,
+                            color: font.contentColor,
                         }}
                     >
-                        ⌘K
+                        {searchShortcut}
                     </span>
 
-                    <span>
-                        Search Anything
+                    <span
+                        style={{
+                            fontSize: font.editorFontSize,
+                            color: font.contentColor,
+                        }}
+                    >
+                        {searchPlaceholder}
                     </span>
                 </div>
                 <div
@@ -109,11 +117,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
                             border: 'none',
                             outline: 'none',
                             font: font.contentFont,
-                            fontSize: font.contentFontSize,
-                            fontFamily: font.contentFont,
+                            fontSize: font.editorFontSize,
+                            color: font.editorFontColor,
                             fontWeight: font.contentFontWeight,
-                            backgroundColor: 'transparent',
-                            color: font.contentColor,
+                            background: 'none',
                         }}
                     />
                     <div
@@ -139,7 +146,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
 
                 <div
                     style={{
-                        backgroundColor: background.mainColor,
                         position: 'absolute',
                         zIndex: 2,
                         top: '100%',
@@ -148,22 +154,21 @@ const SearchBar: React.FC<SearchBarProps> = ({ }) => {
                 >
                     <span
                         style={{
-                            width: '600px',
+                            width: '500px',
                             minHeight: '100px',
                             maxHeight: '400px',
                             overflowY: 'auto',
                             flexGrow: 1,
                             padding: ui.uiSpacing,
-                            backgroundColor: `${background.accentColor3}${bgOpacity}`,
+                            backgroundColor: background.searchBarColor,
                             backdropFilter: 'blur(10px)',
                             border,
-                            borderBottomLeftRadius: ui.searchBarBorderRadius,
-                            borderBottomRightRadius: ui.searchBarBorderRadius,
+                            borderBottomLeftRadius: ui.elementBorderRadius,
+                            borderBottomRightRadius: ui.elementBorderRadius,
                             borderTopLeftRadius: 0,
                             borderTopRightRadius: 0,
                             boxSizing: 'border-box',
                         }}>
-                            Hello World
 
                     </span>
                 </div>

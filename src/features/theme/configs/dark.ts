@@ -1,39 +1,52 @@
+import { fontDir } from '@tauri-apps/api/path'
 import type { BackgroundState, FontState, ElementState, IconState, Constants } from '../../../types/themeSlice'
 
 export const constants: Constants = {
-    //icon sizes
-    iconSizeSmall: 16,
-    iconSizeMed: 22,
+    iconSizeSmall: 14,
+    iconSizeMed: 23,
     iconSizeLarge: 32,
-    //font sizes
+
     fontSizeSmall: 12,
     fontSizeMed: 14,
-    fontSizeLarge: 16,
-    //font weights
-    fontWeightLight: 300,
-    fontWeightMed: 400,
+    fontSizeLarge: 22,
+
+    fontWeightLight: 400,
+    fontWeightMed: 500,
     fontWeightHeavy: 700,
-    //roundness
+
     roundnessLight: 3,
     roundnessMed: 5,
-    roundnessHeavy: 10,
-}
-export const darkModeBackground: BackgroundState = {
-    mainColor: '#353131',
+    roundnessHeavy: 15,
+
+    fontColorMain: '#d2d2d2',
+    fontColorSecondary: '#e0e0e0',
+
+    mainColor: '#2c2c2c',
     accentColor: '#faf7f7',
     accentColor2: '#078efd',
-    accentColor3: '#4e5569',
-    iconColor: '#B4CCB9',
-    hoverColor: '#5e5d5d',
-    headerColor: '#353131',
-    editorColor: '#353131',
+    accentColor3:'#078efd',
+    accentColor4: '#B4CCB9',
+}
+export const darkModeBackground: BackgroundState = {
+    appColor: constants.mainColor,
+    hoverColor: constants.accentColor,
+    menuColor: constants.mainColor,
+    searchBarColor: constants.accentColor,
+    headerColor: constants.mainColor,
+    editorColor: constants.mainColor,
+    editorContainerColor: constants.mainColor,
+    renderedColor: constants.mainColor,
+    lineColor: constants.accentColor4,
+    tabColor: constants.accentColor,
+    tabAreaColor: constants.mainColor,
+    settingsColor: constants.mainColor,
 }
 
 export const darkModeFont: FontState = {
     editorFont: '"Fira code", "Fira Mono", monospace',
-    editorFontColor: '#757575',
+    editorFontColor: constants.fontColorSecondary,
     editorFontSize: constants.fontSizeMed,
-    contentColor: darkModeBackground.accentColor,
+    contentColor: constants.fontColorMain,
     contentFont: 'Roboto, sans-serif',
     contentFontSize: constants.fontSizeSmall,
     contentFontWeight: constants.fontWeightLight,
@@ -43,8 +56,8 @@ export const darkModeFont: FontState = {
 
 export const darkUIState: ElementState = {
     elementBorderRadius: constants.roundnessLight,
-    menuButtonBorderRadius: constants.roundnessMed,
-    tabBorderRadius: constants.roundnessHeavy,
+    menuButtonBorderRadius: constants.roundnessLight,
+    tabBorderRadius: constants.roundnessLight,
     searchBarBorderRadius: constants.roundnessHeavy,
     uiSpacing: 5,
     border: `1px solid ${darkModeBackground.hoverColor}`,
@@ -53,12 +66,12 @@ export const darkUIState: ElementState = {
 }
 
 export const darkIconState: IconState = {
-    iconOutlineColor: '#393939',
-    iconColorMain: '#cff0ff',
-    iconColorSecondary: '#c2b7ff',
-    iconColorTertiary: '#fdfdfd',
-    iconColorQuaternary: '#fa757c',
-    iconColorQuinary: '#75fa86',
+    iconOutlineColor: '#818181',
+    iconColorMain: '#52c5fa',
+    iconColorSecondary: '#9886fa',
+    iconColorTertiary: '#fcbabd',
+    iconColorQuaternary: '#fc000d',
+    iconColorQuinary: '#00ff22',
     iconSize: constants.iconSizeSmall,
     iconDescSize: constants.fontSizeSmall,
     iconDescColor: darkModeFont.contentColor,

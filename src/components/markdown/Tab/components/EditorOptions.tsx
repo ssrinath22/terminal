@@ -27,7 +27,7 @@ const EditorOptions: React.FC<EditorOptionsProps> = ({ onSelect }) => {
                 backgroundColor: background.editorColor,
                 boxSizing: 'border-box',
                 gap: ui.uiSpacing,
-                boxShadow: `#00000077 0px 0px 5px`,
+                boxShadow: ui.boxShadow,
             }}
         >
 

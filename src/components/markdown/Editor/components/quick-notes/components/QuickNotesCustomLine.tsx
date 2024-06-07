@@ -6,16 +6,17 @@ import LineOptionButton from './LineOptionButton'
 interface QuickNotesCustomLineProps {
     value: string
     onChange: (value: string) => void
+    lineNum: number
 }
 
-const QuickNotesCustomLine = forwardRef<HTMLTextAreaElement, QuickNotesCustomLineProps>(({ value, onChange }, ref) => {
+const QuickNotesCustomLine = forwardRef<HTMLTextAreaElement, QuickNotesCustomLineProps>(({ value, onChange, lineNum }, ref) => {
     const { background, font, ui } = useSelector((state: RootState) => state.theme)
 
     const textareaRef = useRef<HTMLTextAreaElement | null>(null)
     const [isFocused, setIsFocused] = useState(false)
     const [hovered, setHovered] = useState(false)
 
-    const bgOpacity = isFocused ? '1F' : hovered ? '0F' : '00'
+    const bgOpacity = isFocused ? '55' : hovered ? '44' : '00'
 
     useEffect(() => {
         if (textareaRef.current) {
@@ -32,14 +33,14 @@ const QuickNotesCustomLine = forwardRef<HTMLTextAreaElement, QuickNotesCustomLin
     }
 
     return (
-        <div
+        <div 
             onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
+            onMouseLeave={async () => await setTimeout(() => setHovered(false), 350)}
             style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: `${background.accentColor2}${bgOpacity}`,
+                backgroundColor: `${background.lineColor}${bgOpacity}`,
                 padding: ui.uiSpacing,
                 borderRadius: ui.elementBorderRadius,
                 width: '100%',
@@ -48,6 +49,7 @@ const QuickNotesCustomLine = forwardRef<HTMLTextAreaElement, QuickNotesCustomLin
             }}
         >
             <LineOptionButton
+                lineNum={lineNum}
                 active={hovered}
             />
 

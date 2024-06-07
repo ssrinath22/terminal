@@ -20,12 +20,12 @@ const MenuArea: React.FC<MenuArea> = ({activeSection, setActiveSection}) => {
             style={{
                 position:'relative',
                 zIndex: 2,
-                backgroundColor: `${background.mainColor}`,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'flex-start',
                 padding: ui.uiSpacing,
+                borderRight: ui.border,
             }}
         >
             {/** Inner Container */}

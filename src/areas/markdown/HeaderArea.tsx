@@ -18,7 +18,7 @@ const HeaderArea: React.FC<HeaderAreaProps> = ({ }) => {
                 justifyContent: 'space-around',
                 alignItems: 'center',
                 padding: '10px 20px',
-                borderBottom: `1px solid ${background.hoverColor}`,
+                borderBottom: ui.border,
                 boxSizing: 'border-box',
                 width: '100%',
                 backgroundColor: background.headerColor,

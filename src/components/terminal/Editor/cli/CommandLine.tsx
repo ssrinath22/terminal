@@ -34,7 +34,7 @@ const CommandLine: React.FC<CommandLineProps> = ({ currentDirectory, setCurrentD
 
     /** command line styles */
     const borderOpacity = '50'
-    const border = commandLineFocused ? `1px solid ${background.accentColor}${borderOpacity}` : `1px solid ${background.accentColor}${'00'}`
+    const border = commandLineFocused ? `1px solid ${background.lineColor}${borderOpacity}` : `1px solid ${background.lineColor}${'00'}`
     const innerPadding = '0px 0px'
     const spacing = 0
 

@@ -1,28 +1,4 @@
 /** Types */
-export interface BackgroundState {
-    mainColor: string
-    accentColor: string
-    accentColor2: string
-    accentColor3: string
-    editorColor: string
-    headerColor: string
-    iconColor: string
-    hoverColor: string
-}
-
-export interface IconState {
-    iconOutlineColor: string
-    iconColorMain: string
-    iconColorSecondary: string
-    iconColorTertiary: string
-    iconColorQuaternary: string
-    iconColorQuinary: string
-    iconSize: number
-    iconDescSize: number
-    iconDescColor: string
-    iconDescWeight: number,
-}
-
 export interface Constants {
     iconSizeSmall: number
     iconSizeMed: number
@@ -36,6 +12,42 @@ export interface Constants {
     roundnessLight: number
     roundnessMed: number
     roundnessHeavy: number
+    fontColorMain: string
+    fontColorSecondary: string
+    mainColor: string
+    accentColor: string
+    accentColor2: string
+    accentColor3: string
+    accentColor4: string
+    accentColor5?: string
+}
+
+export interface BackgroundState {
+    appColor: string
+    menuColor: string
+    editorColor: string
+    editorContainerColor: string
+    renderedColor: string
+    lineColor: string
+    searchBarColor: string
+    headerColor: string
+    hoverColor: string
+    tabColor: string
+    tabAreaColor: string
+    settingsColor: string
+}
+
+export interface IconState {
+    iconOutlineColor: string
+    iconColorMain: string
+    iconColorSecondary: string
+    iconColorTertiary: string
+    iconColorQuaternary: string
+    iconColorQuinary: string
+    iconSize: number
+    iconDescSize: number
+    iconDescColor: string
+    iconDescWeight: number
 }
 
 export interface FontState {

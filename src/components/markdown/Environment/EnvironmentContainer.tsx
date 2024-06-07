@@ -31,7 +31,7 @@ const OptionTab: React.FC<OptionTabProps> = ({ name, currSection, setCurrSection
                 fontSize: font.contentFontSize,
                 color: font.contentColor,
                 // boxShadow: isActive ? ui.boxShadow : '',
-                backgroundColor: isActive || hovered ? background.mainColor : background.editorColor,
+                backgroundColor: isActive || hovered ? background.tabColor : background.editorColor,
                 borderRadius: ui.elementBorderRadius,
                 display: 'flex',
                 justifyContent: 'start',
