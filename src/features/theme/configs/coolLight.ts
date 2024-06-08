@@ -19,11 +19,11 @@ export const constants: Constants = {
     accentColor: '#fceeff',
     accentColor2: '#460087',
     accentColor3: '#fcfdff',
-    accentColor4: '#efff73',
+    accentColor4: '#f2ff5f',
     accentColor5: '#f7f7f7',
 }
 
-export const defaultBackgroundState: BackgroundState = {
+export const clBackground: BackgroundState = {
     appColor: constants.mainColor,
     hoverColor: constants.accentColor,
     menuColor: constants.mainColor,
@@ -38,7 +38,7 @@ export const defaultBackgroundState: BackgroundState = {
     settingsColor: constants.mainColor,
 }
 
-export const defaultFontState: FontState = {
+export const clFont: FontState = {
     editorFont: "Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol",
     editorFontColor: constants.fontColorSecondary,
     editorFontSize: constants.fontSizeMed,
@@ -50,7 +50,7 @@ export const defaultFontState: FontState = {
     responseFontWeight: constants.fontWeightHeavy,
 }
 
-export const defaultUIState: ElementState = {
+export const clUI: ElementState = {
     elementBorderRadius: constants.roundnessLight,
     menuButtonBorderRadius: constants.roundnessLight,
     tabBorderRadius: constants.roundnessLight,
@@ -59,26 +59,26 @@ export const defaultUIState: ElementState = {
     border: `1px solid ${constants.accentColor2}`,
     // border: '',
     boxShadow: `${constants.accentColor2}44 0px 0px 2px`,
-    tabSelectColor: defaultBackgroundState.hoverColor,
+    tabSelectColor: clBackground.hoverColor,
 }
 
-export const defaultIconState: IconState = {
+export const clIcon: IconState = {
     iconOutlineColor: '#003228',
     iconColorMain: '#99cefa',
     iconColorSecondary: '#e9e9e9',
-    iconColorTertiary: '#fffff2',
+    iconColorTertiary: '#292928',
     iconColorQuaternary: '#f298ac',
     iconColorQuinary: '#86f5ba',
     iconSize: constants.iconSizeSmall,
-    iconDescSize: defaultFontState.contentFontSize,
-    iconDescColor: defaultFontState.contentColor,
-    iconDescWeight: defaultFontState.contentFontWeight,
+    iconDescSize: clFont.contentFontSize,
+    iconDescColor: clFont.contentColor,
+    iconDescWeight: clFont.contentFontWeight,
 }
 
 export const coolLightState = {
-    background: defaultBackgroundState,
-    font: defaultFontState,
-    ui: defaultUIState,
-    icon: defaultIconState,
-    mode: 'coolLight',
+    background: clBackground,
+    font: clFont,
+    ui: clUI,
+    icon: clIcon,
+    mode: 'cool light',
 }

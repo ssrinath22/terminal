@@ -27,7 +27,7 @@ export const constants: Constants = {
     accentColor3:'#078efd',
     accentColor4: '#B4CCB9',
 }
-export const darkModeBackground: BackgroundState = {
+export const darkBackground: BackgroundState = {
     appColor: constants.mainColor,
     hoverColor: constants.accentColor,
     menuColor: constants.mainColor,
@@ -42,7 +42,7 @@ export const darkModeBackground: BackgroundState = {
     settingsColor: constants.mainColor,
 }
 
-export const darkModeFont: FontState = {
+export const darkFont: FontState = {
     editorFont: '"Fira code", "Fira Mono", monospace',
     editorFontColor: constants.fontColorSecondary,
     editorFontSize: constants.fontSizeMed,
@@ -54,18 +54,18 @@ export const darkModeFont: FontState = {
     responseFontWeight: constants.fontWeightHeavy,
 }
 
-export const darkUIState: ElementState = {
+export const darkUI: ElementState = {
     elementBorderRadius: constants.roundnessLight,
     menuButtonBorderRadius: constants.roundnessLight,
     tabBorderRadius: constants.roundnessLight,
     searchBarBorderRadius: constants.roundnessHeavy,
     uiSpacing: 5,
-    border: `1px solid ${darkModeBackground.hoverColor}`,
+    border: `1px solid ${darkBackground.hoverColor}`,
     boxShadow: ``,
-    tabSelectColor: darkModeBackground.hoverColor,
+    tabSelectColor: darkBackground.hoverColor,
 }
 
-export const darkIconState: IconState = {
+export const darkIcon: IconState = {
     iconOutlineColor: '#818181',
     iconColorMain: '#52c5fa',
     iconColorSecondary: '#9886fa',
@@ -74,14 +74,14 @@ export const darkIconState: IconState = {
     iconColorQuinary: '#00ff22',
     iconSize: constants.iconSizeSmall,
     iconDescSize: constants.fontSizeSmall,
-    iconDescColor: darkModeFont.contentColor,
-    iconDescWeight: darkModeFont.contentFontWeight,
+    iconDescColor: darkFont.contentColor,
+    iconDescWeight: darkFont.contentFontWeight,
 }
 
-export const darkModeState = {
-    background: darkModeBackground,
-    font: darkModeFont,
-    ui: darkUIState,
-    icon: darkIconState,
+export const darkState = {
+    background: darkBackground,
+    font: darkFont,
+    ui: darkUI,
+    icon: darkIcon,
     mode: 'dark',
 }

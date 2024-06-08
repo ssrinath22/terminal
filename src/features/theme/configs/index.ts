@@ -1,5 +1,5 @@
-import { initialState } from './default'
-import { darkModeState } from './dark'
+import { lightState } from './default'
+import { darkState } from './dark'
 import { coolLightState } from './coolLight'
 
-export {initialState, darkModeState, coolLightState}
+export {lightState, darkState, coolLightState}

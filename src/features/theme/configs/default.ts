@@ -10,23 +10,23 @@ export const constants: Constants = {
     fontWeightLight: 400,
     fontWeightMed: 500,
     fontWeightHeavy: 700,
-    roundnessLight: 0,
+    roundnessLight: 3,
     roundnessMed: 5,
     roundnessHeavy: 20,
-    fontColorMain: '#676767',
-    fontColorSecondary: '#484848',
-    mainColor: '#fefefe',
-    accentColor: '#eff1fb',
+    fontColorMain: '#666666',
+    fontColorSecondary: '#404040',
+    mainColor: '#ffffff',
+    accentColor: '#f2f2f2',
     accentColor2: '#4e87f9',
     accentColor3: '#0c0043',
-    accentColor4: '#c2ffce',
+    accentColor4: '#cdf1ff',
 }
 
-export const defaultBackgroundState: BackgroundState = {
+export const lightBackground: BackgroundState = {
     appColor: constants.mainColor,
     hoverColor: constants.accentColor,
     menuColor: constants.mainColor,
-    searchBarColor: constants.accentColor,
+    searchBarColor: constants.accentColor4,
     headerColor: constants.mainColor,
     editorColor: constants.mainColor,
     editorContainerColor: constants.mainColor,
@@ -37,7 +37,7 @@ export const defaultBackgroundState: BackgroundState = {
     settingsColor: constants.mainColor,
 }
 
-export const defaultFontState: FontState = {
+export const lightFont: FontState = {
     // editorFont: '"Fira code", "Fira Mono", monospace',
     editorFont: "Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol",
     editorFontColor: constants.fontColorSecondary,
@@ -50,18 +50,19 @@ export const defaultFontState: FontState = {
     responseFontWeight: constants.fontWeightHeavy,
 }
 
-export const defaultUIState: ElementState = {
+export const lightUI: ElementState = {
     elementBorderRadius: constants.roundnessLight,
     menuButtonBorderRadius: constants.roundnessLight,
     tabBorderRadius: constants.roundnessLight,
     searchBarBorderRadius: constants.roundnessHeavy,
     uiSpacing: 5,
-    border: `1px solid ${constants.accentColor3}`,
+    // border: `1px solid ${constants.accentColor3}`,
+    border: '',
     boxShadow: ``,
-    tabSelectColor: defaultBackgroundState.hoverColor,
+    tabSelectColor: lightBackground.hoverColor,
 }
 
-export const defaultIconState: IconState = {
+export const lightIcon: IconState = {
     iconOutlineColor: '#394240',
     iconColorMain: '#99cefa',
     iconColorSecondary: '#e9e9e9',
@@ -69,15 +70,15 @@ export const defaultIconState: IconState = {
     iconColorQuaternary: '#f298ac',
     iconColorQuinary: '#86f5ba',
     iconSize: constants.iconSizeSmall,
-    iconDescSize: defaultFontState.contentFontSize,
-    iconDescColor: defaultFontState.contentColor,
-    iconDescWeight: defaultFontState.contentFontWeight,
+    iconDescSize: lightFont.contentFontSize,
+    iconDescColor: lightFont.contentColor,
+    iconDescWeight: lightFont.contentFontWeight,
 }
 
-export const initialState = {
-    background: defaultBackgroundState,
-    font: defaultFontState,
-    ui: defaultUIState,
-    icon: defaultIconState,
+export const lightState = {
+    background: lightBackground,
+    font: lightFont,
+    ui: lightUI,
+    icon: lightIcon,
     mode: 'default',
 }
